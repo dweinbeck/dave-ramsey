@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Routes, sub-nav, week math, data isolation, and privacy infrastructure
 - [x] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
-- [ ] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
+- [x] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
 - [ ] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
 - [ ] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
 - [ ] **Phase 6: Billing Integration** - Free week, weekly credit charging, read-only enforcement
@@ -68,9 +68,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — getWeekNumber utility + transactionUpdateSchema + TransactionsPageData type (TDD, dave-ramsey repo)
-- [ ] 03-02-PLAN.md — Transaction CRUD functions, API routes, useTransactions SWR hook (both repos)
-- [ ] 03-03-PLAN.md — Transactions page UI + inline home page transaction form (personal-brand repo)
+- [x] 03-01-PLAN.md — getWeekNumber utility + transactionUpdateSchema + TransactionsPageData type (TDD, dave-ramsey repo)
+- [x] 03-02-PLAN.md — Transaction CRUD functions, API routes, useTransactions SWR hook (both repos)
+- [x] 03-03-PLAN.md — Transactions page UI + inline home page transaction form (personal-brand repo)
 
 ### Phase 4: Overage Reallocation
 **Goal**: When a transaction causes an envelope to go negative, users are guided through a reallocation workflow to cover the overage from other envelopes, with full validation and atomic persistence
@@ -127,7 +127,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-02-10 |
 | 2. Envelope Management | 3/3 | Complete | 2026-02-10 |
-| 3. Transactions | 0/3 | Not started | - |
+| 3. Transactions | 3/3 | Complete | 2026-02-10 |
 | 4. Overage Reallocation | 0/3 | Not started | - |
 | 5. Analytics | 0/2 | Not started | - |
 | 6. Billing Integration | 0/2 | Not started | - |

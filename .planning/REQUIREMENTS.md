@@ -30,16 +30,16 @@
 - [x] **HOME-02**: Envelope cards matching site's Card component style: title, weekly budget, remaining, status label
 - [x] **HOME-03**: Overall on-track indicator aggregated across all envelopes for the current week
 - [x] **HOME-04**: Cumulative savings total displayed prominently on home page
-- [ ] **HOME-05**: Inline transaction form: expand envelope card to full row width with Date, Cost, Merchant, Description fields
+- [x] **HOME-05**: Inline transaction form: expand envelope card to full row width with Date, Cost, Merchant, Description fields
 
 ### Transactions
 
-- [ ] **TXN-01**: User can create transactions from Transactions page with fields: Date, Cost, Envelope (dropdown), Merchant, Description
-- [ ] **TXN-02**: User can create transactions from inline card form on Home page
-- [ ] **TXN-03**: User can delete transactions with server-side auth verification and immediate balance recomputation
-- [ ] **TXN-04**: User can edit transactions (amount, date, envelope, merchant, description) after creation
-- [ ] **TXN-05**: Week selector dropdown on Transactions page displaying "Week N: M/D/YYYY - M/D/YYYY"
-- [ ] **TXN-06**: Transaction list for selected week displays all fields with delete action
+- [x] **TXN-01**: User can create transactions from Transactions page with fields: Date, Cost, Envelope (dropdown), Merchant, Description
+- [x] **TXN-02**: User can create transactions from inline card form on Home page
+- [x] **TXN-03**: User can delete transactions with server-side auth verification and immediate balance recomputation
+- [x] **TXN-04**: User can edit transactions (amount, date, envelope, merchant, description) after creation
+- [x] **TXN-05**: Week selector dropdown on Transactions page displaying "Week N: M/D/YYYY - M/D/YYYY"
+- [x] **TXN-06**: Transaction list for selected week displays all fields with delete action
 
 ### Overage
 
