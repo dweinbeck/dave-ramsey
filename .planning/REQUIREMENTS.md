@@ -57,9 +57,9 @@
 
 ### Billing
 
-- [ ] **BILL-01**: First week of usage is free (no credit charge on initial access)
-- [ ] **BILL-02**: After free week, 100 credits charged per week on first access each week
-- [ ] **BILL-03**: When unpaid (after free week expires), user sees data in read-only mode (can view but cannot add, edit, or delete)
+- [x] **BILL-01**: First week of usage is free (no credit charge on initial access)
+- [x] **BILL-02**: After free week, 100 credits charged per week on first access each week
+- [x] **BILL-03**: When unpaid (after free week expires), user sees data in read-only mode (can view but cannot add, edit, or delete)
 
 ## v2 Requirements
 
@@ -125,9 +125,9 @@
 | ANL-01 | Phase 5 | Complete |
 | ANL-02 | Phase 5 | Complete |
 | ANL-03 | Phase 5 | Complete |
-| BILL-01 | Phase 6 | Pending |
-| BILL-02 | Phase 6 | Pending |
-| BILL-03 | Phase 6 | Pending |
+| BILL-01 | Phase 6 | Complete |
+| BILL-02 | Phase 6 | Complete |
+| BILL-03 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 35 total
@@ -136,4 +136,4 @@
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after Phase 5 completion*
+*Last updated: 2026-02-10 after Phase 6 completion*

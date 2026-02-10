@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
 - [x] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
 - [x] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
-- [ ] **Phase 6: Billing Integration** - Free week, weekly credit charging, read-only enforcement
+- [x] **Phase 6: Billing Integration** - Free week, weekly credit charging, read-only enforcement
 
 ## Phase Details
 
@@ -115,9 +115,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Billing module (checkEnvelopeAccess), types, tool pricing activation (personal-brand repo)
-- [ ] 06-02-PLAN.md — API route billing gates (8 mutations + 3 GET responses) (personal-brand repo)
-- [ ] 06-03-PLAN.md — UI read-only mode: ReadOnlyBanner + disable mutations in all pages (personal-brand repo)
+- [x] 06-01-PLAN.md — Billing module (checkEnvelopeAccess), types, tool pricing activation (personal-brand repo)
+- [x] 06-02-PLAN.md — API route billing gates (8 mutations + 3 GET responses) (personal-brand repo)
+- [x] 06-03-PLAN.md — UI read-only mode: ReadOnlyBanner + disable mutations in all pages (personal-brand repo)
 
 ## Progress
 
@@ -132,4 +132,4 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | 3. Transactions | 3/3 | Complete | 2026-02-10 |
 | 4. Overage Reallocation | 3/3 | Complete | 2026-02-10 |
 | 5. Analytics | 3/3 | Complete | 2026-02-10 |
-| 6. Billing Integration | 0/3 | Not started | - |
+| 6. Billing Integration | 3/3 | Complete | 2026-02-10 |
