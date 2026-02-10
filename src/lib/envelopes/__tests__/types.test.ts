@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { envelopeSchema, transactionSchema } from "../types";
+import {
+  envelopeSchema,
+  transactionSchema,
+  transactionUpdateSchema,
+} from "../types";
 
 describe("envelopeSchema", () => {
   it("accepts valid input", () => {
@@ -138,5 +142,41 @@ describe("transactionSchema", () => {
       date: "2025-12-31",
     });
     expect(result.success).toBe(true);
+  });
+});
+
+describe("transactionUpdateSchema", () => {
+  it("accepts a single optional field", () => {
+    const result = transactionUpdateSchema.safeParse({ amountCents: 500 });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts multiple optional fields", () => {
+    const result = transactionUpdateSchema.safeParse({
+      envelopeId: "abc",
+      amountCents: 1500,
+      date: "2026-02-10",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts empty object (all fields optional)", () => {
+    const result = transactionUpdateSchema.safeParse({});
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects amountCents of 0 (min 1)", () => {
+    const result = transactionUpdateSchema.safeParse({ amountCents: 0 });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects invalid date format (MM-DD-YYYY)", () => {
+    const result = transactionUpdateSchema.safeParse({ date: "02-10-2026" });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects non-integer amountCents", () => {
+    const result = transactionUpdateSchema.safeParse({ amountCents: 12.5 });
+    expect(result.success).toBe(false);
   });
 });

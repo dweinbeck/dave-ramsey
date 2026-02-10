@@ -24,6 +24,19 @@ export const transactionSchema = z.object({
 });
 export type TransactionInput = z.infer<typeof transactionSchema>;
 
+/** Transaction partial update payload (all fields optional). */
+export const transactionUpdateSchema = z.object({
+  envelopeId: z.string().min(1).optional(),
+  amountCents: z.number().int().min(1).optional(),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD")
+    .optional(),
+  merchant: z.string().max(200).optional(),
+  description: z.string().max(500).optional(),
+});
+export type TransactionUpdateInput = z.infer<typeof transactionUpdateSchema>;
+
 // ---------------------------------------------------------------------------
 // Firestore document shapes (what is stored)
 // ---------------------------------------------------------------------------
@@ -79,4 +92,9 @@ export type HomePageData = {
   envelopes: EnvelopeWithStatus[];
   weekLabel: string;
   cumulativeSavingsCents: number;
+};
+
+/** Response shape for GET /api/envelopes/transactions?weekStart=...&weekEnd=... */
+export type TransactionsPageData = {
+  transactions: EnvelopeTransaction[];
 };

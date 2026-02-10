@@ -2,6 +2,7 @@ import {
   differenceInCalendarDays,
   endOfWeek,
   format,
+  getWeek,
   startOfWeek,
 } from "date-fns";
 
@@ -59,4 +60,13 @@ export function getStatusLabel(
 export function formatWeekLabel(date: Date): string {
   const { start, end } = getWeekRange(date);
   return `${format(start, "M/d/yyyy")} - ${format(end, "M/d/yyyy")}`;
+}
+
+/**
+ * Returns the week-of-year number for a given date using US conventions.
+ * Weeks start on Sunday (weekStartsOn: 0) and the first week of the year
+ * is the one containing January 1st (firstWeekContainsDate: 1).
+ */
+export function getWeekNumber(date: Date): number {
+  return getWeek(date, { weekStartsOn: 0, firstWeekContainsDate: 1 });
 }
