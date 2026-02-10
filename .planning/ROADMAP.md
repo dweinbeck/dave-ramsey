@@ -65,12 +65,12 @@ Plans:
   3. User can edit any transaction's fields (amount, date, envelope, merchant, description) and the affected envelope balances recompute correctly
   4. User can delete a transaction with immediate UI update and server-side auth verification, and the envelope's remaining balance recomputes
   5. Transactions page has a week selector ("Week N: M/D/YYYY - M/D/YYYY") that filters the transaction list to the selected week, showing all fields with delete action
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
-- [ ] 03-03: TBD
+- [ ] 03-01-PLAN.md — getWeekNumber utility + transactionUpdateSchema + TransactionsPageData type (TDD, dave-ramsey repo)
+- [ ] 03-02-PLAN.md — Transaction CRUD functions, API routes, useTransactions SWR hook (both repos)
+- [ ] 03-03-PLAN.md — Transactions page UI + inline home page transaction form (personal-brand repo)
 
 ### Phase 4: Overage Reallocation
 **Goal**: When a transaction causes an envelope to go negative, users are guided through a reallocation workflow to cover the overage from other envelopes, with full validation and atomic persistence
