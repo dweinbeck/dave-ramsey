@@ -17,19 +17,19 @@
 
 ### Envelopes
 
-- [ ] **ENV-01**: User can create an envelope with title and weekly budget amount
-- [ ] **ENV-02**: User can edit an envelope's title and weekly budget
-- [ ] **ENV-03**: User can delete an envelope with cascading cleanup of related transactions and overage allocations
-- [ ] **ENV-04**: User can set per-envelope rollover policy (carry surplus forward vs reset to budget each week)
-- [ ] **ENV-05**: User can reorder envelopes (sort order persists across sessions)
-- [ ] **ENV-06**: At end of each week, unspent budget across all envelopes accumulates into a cumulative "Savings" total
+- [x] **ENV-01**: User can create an envelope with title and weekly budget amount
+- [x] **ENV-02**: User can edit an envelope's title and weekly budget
+- [x] **ENV-03**: User can delete an envelope with cascading cleanup of related transactions and overage allocations
+- [x] **ENV-04**: User can set per-envelope rollover policy (carry surplus forward vs reset to budget each week)
+- [x] **ENV-05**: User can reorder envelopes (sort order persists across sessions)
+- [x] **ENV-06**: At end of each week, unspent budget across all envelopes accumulates into a cumulative "Savings" total
 
 ### Home Page
 
-- [ ] **HOME-01**: Greeting banner: "Hi {name}! Today is {weekday}..." with on-track/spending summary
-- [ ] **HOME-02**: Envelope cards matching site's Card component style: title, weekly budget, remaining, status label
-- [ ] **HOME-03**: Overall on-track indicator aggregated across all envelopes for the current week
-- [ ] **HOME-04**: Cumulative savings total displayed prominently on home page
+- [x] **HOME-01**: Greeting banner: "Hi {name}! Today is {weekday}..." with on-track/spending summary
+- [x] **HOME-02**: Envelope cards matching site's Card component style: title, weekly budget, remaining, status label
+- [x] **HOME-03**: Overall on-track indicator aggregated across all envelopes for the current week
+- [x] **HOME-04**: Cumulative savings total displayed prominently on home page
 - [ ] **HOME-05**: Inline transaction form: expand envelope card to full row width with Date, Cost, Merchant, Description fields
 
 ### Transactions
@@ -100,16 +100,16 @@
 | INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 4 | Pending |
 | INFRA-07 | Phase 1 | Complete |
-| ENV-01 | Phase 2 | Pending |
-| ENV-02 | Phase 2 | Pending |
-| ENV-03 | Phase 2 | Pending |
-| ENV-04 | Phase 2 | Pending |
-| ENV-05 | Phase 2 | Pending |
-| ENV-06 | Phase 2 | Pending |
-| HOME-01 | Phase 2 | Pending |
-| HOME-02 | Phase 2 | Pending |
-| HOME-03 | Phase 2 | Pending |
-| HOME-04 | Phase 2 | Pending |
+| ENV-01 | Phase 2 | Complete |
+| ENV-02 | Phase 2 | Complete |
+| ENV-03 | Phase 2 | Complete |
+| ENV-04 | Phase 2 | Complete |
+| ENV-05 | Phase 2 | Complete |
+| ENV-06 | Phase 2 | Complete |
+| HOME-01 | Phase 2 | Complete |
+| HOME-02 | Phase 2 | Complete |
+| HOME-03 | Phase 2 | Complete |
+| HOME-04 | Phase 2 | Complete |
 | HOME-05 | Phase 3 | Pending |
 | TXN-01 | Phase 3 | Pending |
 | TXN-02 | Phase 3 | Pending |
@@ -136,4 +136,4 @@
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after Phase 1 completion*
+*Last updated: 2026-02-10 after Phase 2 completion*

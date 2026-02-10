@@ -13,7 +13,7 @@ Digital Envelopes is a weekly envelope budgeting mini-app embedded in dan-weinbe
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Routes, sub-nav, week math, data isolation, and privacy infrastructure
-- [ ] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
+- [x] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
 - [ ] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
 - [ ] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
 - [ ] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
@@ -53,7 +53,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Envelope CRUD functions + savings computation (TDD, dave-ramsey repo)
 - [x] 02-02-PLAN.md — API routes, client-side Firestore helpers, SWR hooks (personal-brand repo)
-- [ ] 02-03-PLAN.md — Home page UI: greeting, envelope cards, create/edit/delete, reorder, savings (personal-brand repo)
+- [x] 02-03-PLAN.md — Home page UI: greeting, envelope cards, create/edit/delete, reorder, savings (personal-brand repo)
 
 ### Phase 3: Transactions
 **Goal**: Users can record, edit, and delete transactions from both the home page inline form and the dedicated transactions page, with week-based filtering and immediate balance updates
@@ -126,7 +126,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-02-10 |
-| 2. Envelope Management | 2/3 | In progress | - |
+| 2. Envelope Management | 3/3 | Complete | 2026-02-10 |
 | 3. Transactions | 0/3 | Not started | - |
 | 4. Overage Reallocation | 0/3 | Not started | - |
 | 5. Analytics | 0/2 | Not started | - |
