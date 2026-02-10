@@ -82,12 +82,12 @@ Plans:
   3. Overage allocations are persisted atomically (transaction + allocations written together) with server-side validation of all constraints, and linked to the source transaction for traceability
   4. Deleting a transaction that triggered overage allocations cascades to remove linked allocation records, restoring donor envelope balances correctly
   5. The reusable Modal component works correctly for the overage workflow and is available for future use across the app
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
+- [ ] 04-01-PLAN.md — Allocation validation schemas + validateAllocations + extended balance computation (TDD, dave-ramsey repo)
+- [ ] 04-02-PLAN.md — Firestore allocation CRUD, cascading deleteTransaction, allocation API route, reusable Modal component (both repos)
+- [ ] 04-03-PLAN.md — OverageModal + DonorAllocationRow components, overage detection in EnvelopesHomePage + TransactionsPage (personal-brand repo)
 
 ### Phase 5: Analytics
 **Goal**: Users can view summary stats and a weekly breakdown of their spending across all envelopes, plus track cumulative savings growth over time
