@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 4 in progress -- Overage Handling
+**Current focus:** Phase 4 complete -- ready for Phase 5 (Analytics)
 
 ## Current Position
 
 Phase: 4 of 6 (Overage Reallocation)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-10 -- Completed 04-02-PLAN.md (Allocation CRUD, API & Modal)
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-02-10 -- Completed 04-03-PLAN.md (Overage Modal & Detection)
 
-Progress: [███████████░░░░░░] 69%
+Progress: [████████████░░░░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 4 min
-- Total execution time: 48 min
+- Total execution time: 52 min
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [███████████░░░░░░] 69%
 | 1. Foundation | 3/3 | 14 min | 5 min |
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
 | 3. Transactions | 3/3 | 11 min | 4 min |
-| 4. Overage Reallocation | 2/3 | 7 min | 4 min |
+| 4. Overage Reallocation | 3/3 | 11 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (5 min), 04-01 (2 min), 03-03 (5 min), 03-02 (4 min), 03-01 (2 min)
-- Trend: Cross-repo plans take slightly longer due to merge/sync
+- Last 5 plans: 04-03 (4 min), 04-02 (5 min), 04-01 (2 min), 03-03 (5 min), 03-02 (4 min)
+- Trend: Consistent 2-5 min per plan; Phase 4 completed in 11 min total
 
 *Updated after each plan completion*
 
@@ -80,6 +80,10 @@ Recent decisions affecting current work:
 - [04-02]: Two-pass allocation query in listEnvelopesWithRemaining with deduplication
 - [04-02]: Allocation API computes live donor balances including existing allocations before validation
 - [04-02]: Modal uses native HTML dialog element for built-in focus trap and Escape handling
+- [04-03]: Map-based allocation state for O(1) lookups by donor envelope ID
+- [04-03]: useEffect resets allocations when context changes (new overage opened)
+- [04-03]: Fresh mutate() return value for overage detection (not stale SWR data variable)
+- [04-03]: envelopeFetch captures returned transaction for ID used in overage context
 
 ### Pending Todos
 
@@ -92,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T20:42:00Z
-Stopped at: Completed 04-02-PLAN.md (Allocation CRUD, API & Modal)
+Last session: 2026-02-10T21:01:00Z
+Stopped at: Completed 04-03-PLAN.md (Overage Modal & Detection) -- Phase 4 complete
 Resume file: None

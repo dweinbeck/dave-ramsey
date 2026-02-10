@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Routes, sub-nav, week math, data isolation, and privacy infrastructure
 - [x] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
 - [x] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
-- [ ] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
+- [x] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
 - [ ] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
 - [ ] **Phase 6: Billing Integration** - Free week, weekly credit charging, read-only enforcement
 
@@ -85,9 +85,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Allocation validation schemas + validateAllocations + extended balance computation (TDD, dave-ramsey repo)
-- [ ] 04-02-PLAN.md — Firestore allocation CRUD, cascading deleteTransaction, allocation API route, reusable Modal component (both repos)
-- [ ] 04-03-PLAN.md — OverageModal + DonorAllocationRow components, overage detection in EnvelopesHomePage + TransactionsPage (personal-brand repo)
+- [x] 04-01-PLAN.md — Allocation validation schemas + validateAllocations + extended balance computation (TDD, dave-ramsey repo)
+- [x] 04-02-PLAN.md — Firestore allocation CRUD, cascading deleteTransaction, allocation API route, reusable Modal component (both repos)
+- [x] 04-03-PLAN.md — OverageModal + DonorAllocationRow components, overage detection in EnvelopesHomePage + TransactionsPage (personal-brand repo)
 
 ### Phase 5: Analytics
 **Goal**: Users can view summary stats and a weekly breakdown of their spending across all envelopes, plus track cumulative savings growth over time
@@ -128,6 +128,6 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | 1. Foundation | 3/3 | Complete | 2026-02-10 |
 | 2. Envelope Management | 3/3 | Complete | 2026-02-10 |
 | 3. Transactions | 3/3 | Complete | 2026-02-10 |
-| 4. Overage Reallocation | 0/3 | Not started | - |
+| 4. Overage Reallocation | 3/3 | Complete | 2026-02-10 |
 | 5. Analytics | 0/2 | Not started | - |
 | 6. Billing Integration | 0/2 | Not started | - |
