@@ -62,3 +62,21 @@ export type OverageAllocation = {
   amountCents: number; // how much was reallocated
   createdAt: Timestamp;
 };
+
+// ---------------------------------------------------------------------------
+// Computed / display types (used by UI and API responses)
+// ---------------------------------------------------------------------------
+
+/** Envelope enriched with computed fields for display. */
+export type EnvelopeWithStatus = Envelope & {
+  spentCents: number;
+  remainingCents: number;
+  status: "On Track" | "Watch" | "Over";
+};
+
+/** Response shape for GET /api/envelopes (home page data). */
+export type HomePageData = {
+  envelopes: EnvelopeWithStatus[];
+  weekLabel: string;
+  cumulativeSavingsCents: number;
+};
