@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 3 complete -- Ready for Phase 4 (Overage Handling)
+**Current focus:** Phase 4 in progress -- Overage Handling
 
 ## Current Position
 
-Phase: 3 of 6 (Transactions) -- COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-10 -- Completed 03-03-PLAN.md (Transaction UI Components)
+Phase: 4 of 6 (Overage Reallocation)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 04-01-PLAN.md (Allocation Validation & Balance Extension)
 
-Progress: [█████████░░░░░░░░] 56%
+Progress: [██████████░░░░░░░] 63%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 5 min
-- Total execution time: 41 min
+- Total plans completed: 10
+- Average duration: 4 min
+- Total execution time: 43 min
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [█████████░░░░░░░░] 56%
 | 1. Foundation | 3/3 | 14 min | 5 min |
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
 | 3. Transactions | 3/3 | 11 min | 4 min |
+| 4. Overage Reallocation | 1/3 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (5 min), 03-02 (4 min), 03-01 (2 min), 02-03 (5 min), 02-02 (6 min)
-- Trend: consistent, UI component plans take slightly longer than utility/API plans
+- Last 5 plans: 04-01 (2 min), 03-03 (5 min), 03-02 (4 min), 03-01 (2 min), 02-03 (5 min)
+- Trend: TDD utility plans execute fastest
 
 *Updated after each plan completion*
 
@@ -72,6 +73,9 @@ Recent decisions affecting current work:
 - [03-03]: Inline form date constrained to current week via HTML min/max attributes
 - [03-03]: Mutual exclusion between expandedId, editingId, and deletingId states on home page
 - [03-03]: No delete confirmation for transactions (easily re-created, no cascading effects)
+- [04-01]: validateAllocations reports all errors at once (better UX than short-circuiting)
+- [04-01]: computeEnvelopeStatus extended with optional allocation params (default 0 for backward compat)
+- [04-01]: Defense-in-depth empty check in validateAllocations independent of Zod schema enforcement
 
 ### Pending Todos
 
@@ -84,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T19:51:32Z
-Stopped at: Completed 03-03-PLAN.md (Transaction UI Components) -- Phase 3 complete
+Last session: 2026-02-10T20:34:00Z
+Stopped at: Completed 04-01-PLAN.md (Allocation Validation & Balance Extension)
 Resume file: None
