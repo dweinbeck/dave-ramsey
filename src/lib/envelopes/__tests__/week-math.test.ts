@@ -3,6 +3,7 @@ import {
   formatWeekLabel,
   getRemainingDaysPercent,
   getStatusLabel,
+  getWeekNumber,
   getWeekRange,
 } from "../week-math";
 
@@ -127,6 +128,30 @@ describe("getStatusLabel", () => {
   it("returns 'Watch' when remaining is 1 cent with large proportional", () => {
     // remaining=1, budget=10000, percent=1.0 -> proportional=10000
     expect(getStatusLabel(1, 10000, 1.0)).toBe("Watch");
+  });
+});
+
+describe("getWeekNumber", () => {
+  it("returns week 7 for Sunday Feb 8, 2026", () => {
+    expect(getWeekNumber(new Date(2026, 1, 8))).toBe(7);
+  });
+
+  it("returns week 7 for Wednesday Feb 11, 2026", () => {
+    expect(getWeekNumber(new Date(2026, 1, 11))).toBe(7);
+  });
+
+  it("returns week 1 for Thursday Jan 1, 2026", () => {
+    expect(getWeekNumber(new Date(2026, 0, 1))).toBe(1);
+  });
+
+  it("returns week 2 for Sunday Jan 4, 2026", () => {
+    expect(getWeekNumber(new Date(2026, 0, 4))).toBe(2);
+  });
+
+  it("handles year boundary -- Dec 31, 2025 falls in week 1", () => {
+    // Dec 28 (Sun) - Jan 3 (Sat) is the week containing Jan 1,
+    // so with firstWeekContainsDate: 1, this is week 1
+    expect(getWeekNumber(new Date(2025, 11, 31))).toBe(1);
   });
 });
 
