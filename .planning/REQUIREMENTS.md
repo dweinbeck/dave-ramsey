@@ -51,9 +51,9 @@
 
 ### Analytics
 
-- [ ] **ANL-01**: Summary stats for current week: total spent, total budget, total remaining, on-track indicator
-- [ ] **ANL-02**: Weekly pivot table — rows: weeks, columns: envelopes, values: sum of transactions per envelope per week
-- [ ] **ANL-03**: Savings tracker: cumulative savings total with week-over-week growth visualization
+- [x] **ANL-01**: Summary stats for current week: total spent, total budget, total remaining, on-track indicator
+- [x] **ANL-02**: Weekly pivot table — rows: weeks, columns: envelopes, values: sum of transactions per envelope per week
+- [x] **ANL-03**: Savings tracker: cumulative savings total with week-over-week growth visualization
 
 ### Billing
 
@@ -122,9 +122,9 @@
 | OVR-03 | Phase 4 | Complete |
 | OVR-04 | Phase 4 | Complete |
 | OVR-05 | Phase 4 | Complete |
-| ANL-01 | Phase 5 | Pending |
-| ANL-02 | Phase 5 | Pending |
-| ANL-03 | Phase 5 | Pending |
+| ANL-01 | Phase 5 | Complete |
+| ANL-02 | Phase 5 | Complete |
+| ANL-03 | Phase 5 | Complete |
 | BILL-01 | Phase 6 | Pending |
 | BILL-02 | Phase 6 | Pending |
 | BILL-03 | Phase 6 | Pending |
@@ -136,4 +136,4 @@
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after Phase 4 completion*
+*Last updated: 2026-02-10 after Phase 5 completion*

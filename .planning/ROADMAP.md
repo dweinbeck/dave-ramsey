@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
 - [x] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
 - [x] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
-- [ ] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
+- [x] **Phase 5: Analytics** - Summary stats, weekly pivot table, savings visualization
 - [ ] **Phase 6: Billing Integration** - Free week, weekly credit charging, read-only enforcement
 
 ## Phase Details
@@ -100,9 +100,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Analytics computation helpers + types (TDD, dave-ramsey repo)
-- [ ] 05-02-PLAN.md — Analytics API route, getAnalyticsData, useAnalytics hook, install Recharts (personal-brand repo)
-- [ ] 05-03-PLAN.md — Analytics page UI: SummaryStats, WeeklyPivotTable, SavingsChart, AnalyticsPage (personal-brand repo)
+- [x] 05-01-PLAN.md — Analytics computation helpers + types (TDD, dave-ramsey repo)
+- [x] 05-02-PLAN.md — Analytics API route, getAnalyticsData, useAnalytics hook, install Recharts (personal-brand repo)
+- [x] 05-03-PLAN.md — Analytics page UI: SummaryStats, WeeklyPivotTable, SavingsChart, AnalyticsPage (personal-brand repo)
 
 ### Phase 6: Billing Integration
 **Goal**: The app monetizes through the existing credits system with a free trial week, weekly charging on first access, and graceful read-only degradation for unpaid weeks
@@ -130,5 +130,5 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | 2. Envelope Management | 3/3 | Complete | 2026-02-10 |
 | 3. Transactions | 3/3 | Complete | 2026-02-10 |
 | 4. Overage Reallocation | 3/3 | Complete | 2026-02-10 |
-| 5. Analytics | 0/3 | Not started | - |
+| 5. Analytics | 3/3 | Complete | 2026-02-10 |
 | 6. Billing Integration | 0/2 | Not started | - |
