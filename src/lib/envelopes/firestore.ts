@@ -6,6 +6,7 @@ import {
   getRemainingDaysPercent,
   getStatusLabel,
   formatWeekLabel,
+  getWeekNumber,
 } from "./week-math";
 import type {
   AllocationValidationResult,
@@ -13,8 +14,10 @@ import type {
   EnvelopeTransaction,
   EnvelopeWithStatus,
   HomePageData,
+  PivotRow,
   TransactionInput,
   TransactionUpdateInput,
+  WeeklySavingsEntry,
 } from "./types";
 
 const WEEK_OPTIONS = { weekStartsOn: 0 as const };
@@ -234,6 +237,118 @@ export function computeCumulativeSavingsFromData(
   }
 
   return totalSavings;
+}
+
+/**
+ * Returns per-week savings entries with running cumulative total for all
+ * completed weeks from earliestWeekStart to currentWeekStart (exclusive).
+ *
+ * Delegates per-week savings computation to `computeSavingsForWeek`.
+ * Results are ordered oldest-first (chronological, for chart rendering).
+ */
+export function computeWeeklySavingsBreakdown(
+  envelopes: SavingsEnvelope[],
+  transactions: { envelopeId: string; amountCents: number; date: string }[],
+  earliestWeekStart: string,
+  currentWeekStart: string,
+): WeeklySavingsEntry[] {
+  if (envelopes.length === 0) return [];
+
+  const entries: WeeklySavingsEntry[] = [];
+  let cumulativeCents = 0;
+  let weekStart = earliestWeekStart;
+
+  while (weekStart < currentWeekStart) {
+    const weekStartDate = new Date(weekStart + "T00:00:00");
+    const nextWeekDate = addWeeks(weekStartDate, 1);
+    const weekEnd = format(
+      new Date(nextWeekDate.getTime() - 86_400_000),
+      "yyyy-MM-dd",
+    );
+
+    const weekTransactions = transactions.filter(
+      (t) => t.date >= weekStart && t.date <= weekEnd,
+    );
+
+    const savingsCents = computeSavingsForWeek(
+      envelopes,
+      weekTransactions,
+      weekStart,
+      weekEnd,
+    );
+
+    cumulativeCents += savingsCents;
+
+    const weekNumber = getWeekNumber(weekStartDate);
+    entries.push({
+      weekStart,
+      weekLabel: `Wk ${weekNumber}`,
+      savingsCents,
+      cumulativeCents,
+    });
+
+    weekStart = format(nextWeekDate, "yyyy-MM-dd");
+  }
+
+  return entries;
+}
+
+/**
+ * Groups transactions by week (Sunday-Saturday) then by envelopeId.
+ * Returns rows ordered newest-first (most recent week at top of table).
+ * Weeks with zero transactions are omitted.
+ *
+ * @param transactions - All transactions with envelopeId, amountCents, date (YYYY-MM-DD)
+ * @param earliestWeekStart - YYYY-MM-DD of the Sunday starting the earliest week
+ * @param currentWeekEnd - YYYY-MM-DD of the Saturday ending the latest week
+ */
+export function buildPivotRows(
+  transactions: { envelopeId: string; amountCents: number; date: string }[],
+  earliestWeekStart: string,
+  currentWeekEnd: string,
+): PivotRow[] {
+  if (transactions.length === 0) return [];
+
+  const rows: PivotRow[] = [];
+  let weekStart = earliestWeekStart;
+
+  while (weekStart <= currentWeekEnd) {
+    const weekStartDate = new Date(weekStart + "T00:00:00");
+    const nextWeekDate = addWeeks(weekStartDate, 1);
+    const weekEnd = format(
+      new Date(nextWeekDate.getTime() - 86_400_000),
+      "yyyy-MM-dd",
+    );
+
+    const weekTransactions = transactions.filter(
+      (t) => t.date >= weekStart && t.date <= weekEnd,
+    );
+
+    if (weekTransactions.length > 0) {
+      const cells: Record<string, number> = {};
+      for (const t of weekTransactions) {
+        cells[t.envelopeId] = (cells[t.envelopeId] ?? 0) + t.amountCents;
+      }
+
+      const totalCents = Object.values(cells).reduce(
+        (sum, v) => sum + v,
+        0,
+      );
+
+      const weekNumber = getWeekNumber(weekStartDate);
+      rows.push({
+        weekStart,
+        weekLabel: `Wk ${weekNumber}`,
+        cells,
+        totalCents,
+      });
+    }
+
+    weekStart = format(nextWeekDate, "yyyy-MM-dd");
+  }
+
+  // Reverse to newest-first order
+  return rows.reverse();
 }
 
 // ---------------------------------------------------------------------------
