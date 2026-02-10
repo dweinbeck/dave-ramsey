@@ -3,6 +3,8 @@ import {
   computeEnvelopeStatus,
   computeSavingsForWeek,
   computeCumulativeSavingsFromData,
+  computeWeeklySavingsBreakdown,
+  buildPivotRows,
   validateAllocations,
 } from "../firestore";
 
@@ -335,5 +337,175 @@ describe("computeEnvelopeStatus with allocations", () => {
     const today = new Date(2026, 1, 8); // Sunday
     const result = computeEnvelopeStatus(10000, 5000, today, 2000, 3000);
     expect(result.remainingCents).toBe(4000);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// computeWeeklySavingsBreakdown
+// ---------------------------------------------------------------------------
+
+describe("computeWeeklySavingsBreakdown", () => {
+  it("returns empty array when no envelopes exist", () => {
+    const result = computeWeeklySavingsBreakdown([], [], "2026-01-04", "2026-02-08");
+    expect(result).toEqual([]);
+  });
+
+  it("returns one entry with full budget as savings when single week with no transactions", () => {
+    const envelopes = [
+      { id: "e1", weeklyBudgetCents: 5000, rollover: false, createdAt: "2026-01-01" },
+    ];
+    const transactions: { envelopeId: string; amountCents: number; date: string }[] = [];
+    // One completed week: Jan 4 (Sun) - Jan 10 (Sat), currentWeekStart = Jan 11
+    const result = computeWeeklySavingsBreakdown(envelopes, transactions, "2026-01-04", "2026-01-11");
+    expect(result).toHaveLength(1);
+    expect(result[0]).toEqual({
+      weekStart: "2026-01-04",
+      weekLabel: "Wk 2",
+      savingsCents: 5000,
+      cumulativeCents: 5000,
+    });
+  });
+
+  it("computes correct per-week and cumulative totals across multiple weeks", () => {
+    const envelopes = [
+      { id: "e1", weeklyBudgetCents: 10000, rollover: false, createdAt: "2026-01-01" },
+    ];
+    const transactions = [
+      { envelopeId: "e1", amountCents: 3000, date: "2026-01-05" }, // Week 1: spent 3000, saved 7000
+      { envelopeId: "e1", amountCents: 8000, date: "2026-01-12" }, // Week 2: spent 8000, saved 2000
+    ];
+    // Two completed weeks: Jan 4-10 and Jan 11-17
+    const result = computeWeeklySavingsBreakdown(envelopes, transactions, "2026-01-04", "2026-01-18");
+    expect(result).toHaveLength(2);
+    expect(result[0]).toEqual({
+      weekStart: "2026-01-04",
+      weekLabel: "Wk 2",
+      savingsCents: 7000,
+      cumulativeCents: 7000,
+    });
+    expect(result[1]).toEqual({
+      weekStart: "2026-01-11",
+      weekLabel: "Wk 3",
+      savingsCents: 2000,
+      cumulativeCents: 9000,
+    });
+  });
+
+  it("excludes rollover envelopes from savings (delegates to computeSavingsForWeek)", () => {
+    const envelopes = [
+      { id: "e1", weeklyBudgetCents: 5000, rollover: false, createdAt: "2026-01-01" },
+      { id: "e2", weeklyBudgetCents: 3000, rollover: true, createdAt: "2026-01-01" },
+    ];
+    const transactions: { envelopeId: string; amountCents: number; date: string }[] = [];
+    const result = computeWeeklySavingsBreakdown(envelopes, transactions, "2026-01-04", "2026-01-11");
+    expect(result).toHaveLength(1);
+    expect(result[0].savingsCents).toBe(5000); // only e1 counted
+  });
+
+  it("only counts envelopes from their creation week onward", () => {
+    const envelopes = [
+      { id: "e1", weeklyBudgetCents: 5000, rollover: false, createdAt: "2026-01-04" },
+      { id: "e2", weeklyBudgetCents: 3000, rollover: false, createdAt: "2026-01-12" }, // created in week 2
+    ];
+    const transactions: { envelopeId: string; amountCents: number; date: string }[] = [];
+    // Week 1 (Jan 4-10): only e1 => 5000
+    // Week 2 (Jan 11-17): e1 + e2 => 8000
+    const result = computeWeeklySavingsBreakdown(envelopes, transactions, "2026-01-04", "2026-01-18");
+    expect(result).toHaveLength(2);
+    expect(result[0].savingsCents).toBe(5000);
+    expect(result[0].cumulativeCents).toBe(5000);
+    expect(result[1].savingsCents).toBe(8000);
+    expect(result[1].cumulativeCents).toBe(13000);
+  });
+
+  it("returns entries in chronological order (oldest first)", () => {
+    const envelopes = [
+      { id: "e1", weeklyBudgetCents: 1000, rollover: false, createdAt: "2026-01-01" },
+    ];
+    const transactions: { envelopeId: string; amountCents: number; date: string }[] = [];
+    const result = computeWeeklySavingsBreakdown(envelopes, transactions, "2026-01-04", "2026-01-25");
+    // 3 weeks: Jan 4, Jan 11, Jan 18
+    expect(result).toHaveLength(3);
+    expect(result[0].weekStart).toBe("2026-01-04");
+    expect(result[1].weekStart).toBe("2026-01-11");
+    expect(result[2].weekStart).toBe("2026-01-18");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// buildPivotRows
+// ---------------------------------------------------------------------------
+
+describe("buildPivotRows", () => {
+  it("returns empty array when no transactions exist", () => {
+    const result = buildPivotRows([], "2026-01-04", "2026-01-10");
+    expect(result).toEqual([]);
+  });
+
+  it("returns one row with one cell for a single transaction", () => {
+    const transactions = [
+      { envelopeId: "e1", amountCents: 2500, date: "2026-01-06" },
+    ];
+    // Week: Jan 4-10 (Sun-Sat)
+    const result = buildPivotRows(transactions, "2026-01-04", "2026-01-10");
+    expect(result).toHaveLength(1);
+    expect(result[0]).toEqual({
+      weekStart: "2026-01-04",
+      weekLabel: "Wk 2",
+      cells: { e1: 2500 },
+      totalCents: 2500,
+    });
+  });
+
+  it("groups transactions across 3 weeks and 2 envelopes, newest first", () => {
+    const transactions = [
+      { envelopeId: "e1", amountCents: 1000, date: "2026-01-05" }, // Week 1
+      { envelopeId: "e2", amountCents: 2000, date: "2026-01-06" }, // Week 1
+      { envelopeId: "e1", amountCents: 3000, date: "2026-01-12" }, // Week 2
+      { envelopeId: "e1", amountCents: 500, date: "2026-01-19" },  // Week 3
+      { envelopeId: "e2", amountCents: 1500, date: "2026-01-20" }, // Week 3
+    ];
+    // Range: Jan 4 (Sun) through Jan 24 (Sat)
+    const result = buildPivotRows(transactions, "2026-01-04", "2026-01-24");
+    expect(result).toHaveLength(3);
+
+    // Newest first: Week 3 (Jan 18), Week 2 (Jan 11), Week 1 (Jan 4)
+    expect(result[0].weekStart).toBe("2026-01-18");
+    expect(result[0].cells).toEqual({ e1: 500, e2: 1500 });
+    expect(result[0].totalCents).toBe(2000);
+
+    expect(result[1].weekStart).toBe("2026-01-11");
+    expect(result[1].cells).toEqual({ e1: 3000 });
+    expect(result[1].totalCents).toBe(3000);
+
+    expect(result[2].weekStart).toBe("2026-01-04");
+    expect(result[2].cells).toEqual({ e1: 1000, e2: 2000 });
+    expect(result[2].totalCents).toBe(3000);
+  });
+
+  it("sums multiple transactions in same week and same envelope", () => {
+    const transactions = [
+      { envelopeId: "e1", amountCents: 1000, date: "2026-01-05" },
+      { envelopeId: "e1", amountCents: 2000, date: "2026-01-07" },
+      { envelopeId: "e1", amountCents: 500, date: "2026-01-09" },
+    ];
+    const result = buildPivotRows(transactions, "2026-01-04", "2026-01-10");
+    expect(result).toHaveLength(1);
+    expect(result[0].cells).toEqual({ e1: 3500 });
+    expect(result[0].totalCents).toBe(3500);
+  });
+
+  it("omits weeks with no transactions", () => {
+    const transactions = [
+      { envelopeId: "e1", amountCents: 1000, date: "2026-01-05" }, // Week 1
+      // Week 2 (Jan 11-17): no transactions
+      { envelopeId: "e1", amountCents: 2000, date: "2026-01-19" }, // Week 3
+    ];
+    // Range covers 3 weeks, but week 2 has no transactions
+    const result = buildPivotRows(transactions, "2026-01-04", "2026-01-24");
+    expect(result).toHaveLength(2);
+    // Newest first: Week 3 then Week 1
+    expect(result[0].weekStart).toBe("2026-01-18");
+    expect(result[1].weekStart).toBe("2026-01-04");
   });
 });
