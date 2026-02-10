@@ -1,4 +1,12 @@
-# Requirements: Digital Envelopes
+# Requirements Archive: v1 Digital Envelopes MVP
+
+**Archived:** 2026-02-10
+**Status:** SHIPPED
+
+This is the archived requirements specification for v1.
+For current requirements, see `.planning/REQUIREMENTS.md` (created for next milestone).
+
+---
 
 **Defined:** 2026-02-10
 **Core Value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
@@ -61,7 +69,7 @@
 - [x] **BILL-02**: After free week, 100 credits charged per week on first access each week
 - [x] **BILL-03**: When unpaid (after free week expires), user sees data in read-only mode (can view but cannot add, edit, or delete)
 
-## v2 Requirements
+## v2 Requirements (Deferred)
 
 ### Notifications
 
@@ -131,9 +139,17 @@
 
 **Coverage:**
 - v1 requirements: 35 total
-- Mapped to phases: 35
-- Unmapped: 0
+- Shipped: 35 (100%)
+- Adjusted: 0
+- Dropped: 0
 
 ---
-*Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after Phase 6 completion*
+
+## Milestone Summary
+
+**Shipped:** 35 of 35 v1 requirements
+**Adjusted:** None — all requirements shipped as originally specified
+**Dropped:** None
+
+---
+*Archived: 2026-02-10 as part of v1 milestone completion*
