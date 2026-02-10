@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 2 - Envelope Management
+**Current focus:** Phase 3 - Transactions
 
 ## Current Position
 
-Phase: 2 of 6 (Envelope Management)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-10 -- Completed 02-03-PLAN.md (Home Page UI)
+Phase: 3 of 6 (Transactions)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 03-01-PLAN.md (getWeekNumber + Transaction Update Types)
 
-Progress: [██████░░░░░░░░░░░] 38%
+Progress: [███████░░░░░░░░░░] 44%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: 5 min
-- Total execution time: 30 min
+- Total execution time: 32 min
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [██████░░░░░░░░░░░] 38%
 |-------|-------|-------|----------|
 | 1. Foundation | 3/3 | 14 min | 5 min |
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
+| 3. Transactions | 1/3 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (5 min), 02-02 (6 min), 02-01 (5 min), 01-03 (5 min), 01-02 (4 min)
-- Trend: consistent
+- Last 5 plans: 03-01 (2 min), 02-03 (5 min), 02-02 (6 min), 02-01 (5 min), 01-03 (5 min)
+- Trend: consistent, fast TDD plan
 
 *Updated after each plan completion*
 
@@ -64,6 +65,8 @@ Recent decisions affecting current work:
 - [02-03]: CreateEnvelopeCard uses native button element instead of div with role=button (a11y)
 - [02-03]: Inline delete confirmation instead of modal (Modal component in Phase 4)
 - [02-03]: window.alert for error display (temporary, modal coming in Phase 4)
+- [03-01]: getWeek with firstWeekContainsDate:1 -- Dec 31, 2025 is week 1 (same week as Jan 1, 2026)
+- [03-01]: transactionUpdateSchema reuses same per-field constraints as transactionSchema but all optional for PATCH
 
 ### Pending Todos
 
@@ -76,6 +79,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T17:10:00Z
-Stopped at: Completed 02-03-PLAN.md (Home Page UI) -- Phase 2 complete
+Last session: 2026-02-10T19:35:50Z
+Stopped at: Completed 03-01-PLAN.md (getWeekNumber + Transaction Update Types)
 Resume file: None
