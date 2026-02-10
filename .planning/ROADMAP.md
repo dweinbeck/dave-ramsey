@@ -112,11 +112,12 @@ Plans:
   1. User's first week of using Digital Envelopes is completely free with no credit charge
   2. After the free week, 100 credits are charged on the user's first access each subsequent week (idempotent -- revisiting the same week does not re-charge)
   3. When a user has not paid for the current week (after free week expires), they can view all past data but cannot add, edit, or delete envelopes or transactions (read-only mode with clear visual indication)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
+- [ ] 06-01-PLAN.md — Billing module (checkEnvelopeAccess), types, tool pricing activation (personal-brand repo)
+- [ ] 06-02-PLAN.md — API route billing gates (8 mutations + 3 GET responses) (personal-brand repo)
+- [ ] 06-03-PLAN.md — UI read-only mode: ReadOnlyBanner + disable mutations in all pages (personal-brand repo)
 
 ## Progress
 
@@ -131,4 +132,4 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | 3. Transactions | 3/3 | Complete | 2026-02-10 |
 | 4. Overage Reallocation | 3/3 | Complete | 2026-02-10 |
 | 5. Analytics | 3/3 | Complete | 2026-02-10 |
-| 6. Billing Integration | 0/2 | Not started | - |
+| 6. Billing Integration | 0/3 | Not started | - |
