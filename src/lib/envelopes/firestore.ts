@@ -8,6 +8,7 @@ import {
   formatWeekLabel,
 } from "./week-math";
 import type {
+  AllocationValidationResult,
   Envelope,
   EnvelopeTransaction,
   EnvelopeWithStatus,
@@ -94,13 +95,18 @@ type SavingsEnvelope = {
 
 /**
  * Computes remaining cents and status label for a single envelope.
+ * Optionally accounts for overage allocations (received increases balance,
+ * donated decreases balance). Defaults to 0 for backward compatibility.
  */
 export function computeEnvelopeStatus(
   weeklyBudgetCents: number,
   spentCents: number,
   today: Date,
+  receivedAllocationsCents = 0,
+  donatedAllocationsCents = 0,
 ): { remainingCents: number; status: "On Track" | "Watch" | "Over" } {
-  const remainingCents = weeklyBudgetCents - spentCents;
+  const remainingCents =
+    weeklyBudgetCents - spentCents + receivedAllocationsCents - donatedAllocationsCents;
   const remainingDaysPercent = getRemainingDaysPercent(today);
   const status = getStatusLabel(
     remainingCents,
@@ -108,6 +114,47 @@ export function computeEnvelopeStatus(
     remainingDaysPercent,
   );
   return { remainingCents, status };
+}
+
+/**
+ * Validates a set of overage allocations against constraints:
+ * - At least one allocation must be provided
+ * - Each donor envelope must exist in donorBalances
+ * - Each allocation must not exceed the donor's remaining balance
+ * - Total allocated must exactly equal the overage amount
+ *
+ * Returns all violations (does not short-circuit on first error).
+ */
+export function validateAllocations(
+  allocations: { donorEnvelopeId: string; amountCents: number }[],
+  overageAmountCents: number,
+  donorBalances: Map<string, number>,
+): AllocationValidationResult {
+  const errors: string[] = [];
+
+  if (allocations.length === 0) {
+    return { valid: false, errors: ["No allocations provided"] };
+  }
+
+  for (const alloc of allocations) {
+    const balance = donorBalances.get(alloc.donorEnvelopeId);
+    if (balance === undefined) {
+      errors.push(`Donor envelope ${alloc.donorEnvelopeId} not found`);
+    } else if (alloc.amountCents > balance) {
+      errors.push(
+        `Allocation for ${alloc.donorEnvelopeId} (${alloc.amountCents}) exceeds remaining balance (${balance})`,
+      );
+    }
+  }
+
+  const totalAllocated = allocations.reduce((sum, a) => sum + a.amountCents, 0);
+  if (totalAllocated !== overageAmountCents) {
+    errors.push(
+      `Total allocated (${totalAllocated}) does not equal overage (${overageAmountCents})`,
+    );
+  }
+
+  return errors.length > 0 ? { valid: false, errors } : { valid: true };
 }
 
 /**
