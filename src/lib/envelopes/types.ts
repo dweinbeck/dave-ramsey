@@ -116,3 +116,37 @@ export type HomePageData = {
 export type TransactionsPageData = {
   transactions: EnvelopeTransaction[];
 };
+
+// ---------------------------------------------------------------------------
+// Analytics types (used by GET /api/envelopes/analytics)
+// ---------------------------------------------------------------------------
+
+/** Single row in the weekly savings breakdown (for savings chart). */
+export type WeeklySavingsEntry = {
+  weekStart: string; // "2026-01-05" (YYYY-MM-DD)
+  weekLabel: string; // "Wk 2"
+  savingsCents: number; // savings for this single week
+  cumulativeCents: number; // running total through this week
+};
+
+/** Single row in the weekly pivot table. */
+export type PivotRow = {
+  weekStart: string; // "2026-01-05" (YYYY-MM-DD)
+  weekLabel: string; // "Wk 2"
+  cells: Record<string, number>; // envelopeId -> sum of transaction amountCents
+  totalCents: number; // sum across all envelopes for this week
+};
+
+/** Response shape for GET /api/envelopes/analytics. */
+export type AnalyticsPageData = {
+  summary: {
+    totalSpentCents: number;
+    totalBudgetCents: number;
+    totalRemainingCents: number;
+    onTrackCount: number;
+    totalEnvelopeCount: number;
+  };
+  envelopes: { id: string; title: string }[]; // column headers for pivot table
+  pivotRows: PivotRow[]; // rows, newest week first
+  savingsByWeek: WeeklySavingsEntry[]; // oldest first (for chart x-axis)
+};
