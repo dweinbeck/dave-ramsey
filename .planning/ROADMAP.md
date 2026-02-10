@@ -31,12 +31,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Week math utilities correctly compute week ranges starting Sunday, remaining-days percentage, and status labels for any given date
   4. Every API route enforces per-user data isolation server-side (userId derived from session, never accepted from client) and all monetary values use integer cents
   5. No merchant or description data appears in server logs, and no third-party analytics scripts load on envelope pages
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md — Routing shell, sub-navigation, placeholder pages, main nav link
+- [x] 01-02-PLAN.md — Week math utilities (TDD: getWeekRange, getRemainingDaysPercent, getStatusLabel, formatWeekLabel)
+- [ ] 01-03-PLAN.md — Zod types, Firestore collection helpers, formatCents utility
 
 ### Phase 2: Envelope Management
 **Goal**: Users can create, edit, delete, and reorder envelopes with weekly budgets, see them as styled cards on the home page with a personalized greeting, and track cumulative savings
@@ -125,7 +125,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 1/3 | In progress | - |
 | 2. Envelope Management | 0/3 | Not started | - |
 | 3. Transactions | 0/3 | Not started | - |
 | 4. Overage Reallocation | 0/3 | Not started | - |

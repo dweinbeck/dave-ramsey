@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 1 of 6 (Foundation)
-Plan: 0 of 3 in current phase
-Status: Ready to plan
-Last activity: 2026-02-10 -- Roadmap created with 6 phases covering 35 requirements
+Plan: 2 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 01-01-PLAN.md (Routing Shell)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 12%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: --
-- Total execution time: 0 hours
+- Total plans completed: 2
+- Average duration: 5 min
+- Total execution time: 9 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1. Foundation | 2/3 | 9 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: --
-- Trend: --
+- Last 5 plans: 01-02 (4 min), 01-01 (5 min)
+- Trend: consistent
 
 *Updated after each plan completion*
 
@@ -45,6 +45,11 @@ Recent decisions affecting current work:
 - [Roadmap]: 6 phases derived from 35 requirements -- Foundation, Envelopes, Transactions, Overage, Analytics, Billing
 - [Roadmap]: Compute-on-read for envelope balances (no denormalized remaining field) per research recommendation
 - [Roadmap]: date-fns v4 is the only new dependency needed
+- [01-01]: AuthGuard (not AdminGuard) for envelopes layout -- envelopes is for all authenticated users
+- [01-01]: Envelopes link in main nav for all authenticated users, before Control Center
+- [01-02]: date-fns v4 with explicit weekStartsOn:0 via WEEK_OPTIONS constant -- single source of truth for all week math
+- [01-02]: getRemainingDaysPercent includes today in count (Sunday=7/7, Saturday=1/7, always > 0)
+- [01-02]: getStatusLabel uses >= for On Track threshold (encouraging interpretation)
 
 ### Pending Todos
 
@@ -57,6 +62,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10
-Stopped at: Roadmap created, ready for Phase 1 planning
+Last session: 2026-02-10T14:06:17Z
+Stopped at: Completed 01-01-PLAN.md (Routing Shell)
 Resume file: None
