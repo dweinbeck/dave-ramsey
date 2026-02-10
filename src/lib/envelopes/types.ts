@@ -37,6 +37,24 @@ export const transactionUpdateSchema = z.object({
 });
 export type TransactionUpdateInput = z.infer<typeof transactionUpdateSchema>;
 
+/** Single donor allocation within an overage reallocation. */
+export const donorAllocationSchema = z.object({
+  donorEnvelopeId: z.string().min(1),
+  amountCents: z.number().int().min(1), // positive integer cents
+});
+
+/** Overage allocation input: source transaction + where to pull funds from. */
+export const overageAllocationSchema = z.object({
+  sourceTransactionId: z.string().min(1),
+  allocations: z.array(donorAllocationSchema).min(1),
+});
+export type OverageAllocationInput = z.infer<typeof overageAllocationSchema>;
+
+/** Result of validating an allocation request. */
+export type AllocationValidationResult =
+  | { valid: true }
+  | { valid: false; errors: string[] };
+
 // ---------------------------------------------------------------------------
 // Firestore document shapes (what is stored)
 // ---------------------------------------------------------------------------
