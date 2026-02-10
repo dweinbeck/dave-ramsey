@@ -12,7 +12,7 @@ Digital Envelopes is a weekly envelope budgeting mini-app embedded in dan-weinbe
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Routes, sub-nav, week math, data isolation, and privacy infrastructure
+- [x] **Phase 1: Foundation** - Routes, sub-nav, week math, data isolation, and privacy infrastructure
 - [ ] **Phase 2: Envelope Management** - Envelope CRUD, home page cards, greeting, savings tracking
 - [ ] **Phase 3: Transactions** - Transaction CRUD from both entry points, week selector, transaction list
 - [ ] **Phase 4: Overage Reallocation** - Modal component, overage detection, donor allocation, cascading cleanup
@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 - [x] 01-01-PLAN.md — Routing shell, sub-navigation, placeholder pages, main nav link
 - [x] 01-02-PLAN.md — Week math utilities (TDD: getWeekRange, getRemainingDaysPercent, getStatusLabel, formatWeekLabel)
-- [ ] 01-03-PLAN.md — Zod types, Firestore collection helpers, formatCents utility
+- [x] 01-03-PLAN.md — Zod types, Firestore collection helpers, formatCents utility
 
 ### Phase 2: Envelope Management
 **Goal**: Users can create, edit, delete, and reorder envelopes with weekly budgets, see them as styled cards on the home page with a personalized greeting, and track cumulative savings
@@ -125,7 +125,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In progress | - |
+| 1. Foundation | 3/3 | Complete | 2026-02-10 |
 | 2. Envelope Management | 0/3 | Not started | - |
 | 3. Transactions | 0/3 | Not started | - |
 | 4. Overage Reallocation | 0/3 | Not started | - |
