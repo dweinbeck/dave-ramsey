@@ -3,6 +3,7 @@ import {
   computeEnvelopeStatus,
   computeSavingsForWeek,
   computeCumulativeSavingsFromData,
+  validateAllocations,
 } from "../firestore";
 
 // ---------------------------------------------------------------------------
@@ -208,5 +209,131 @@ describe("computeCumulativeSavingsFromData", () => {
     // Total: 13000
     const result = computeCumulativeSavingsFromData(envelopes, transactions, "2026-01-04", "2026-01-18");
     expect(result).toBe(13000);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// validateAllocations
+// ---------------------------------------------------------------------------
+
+describe("validateAllocations", () => {
+  it("returns valid when allocations exactly equal overage and within donor balances", () => {
+    const result = validateAllocations(
+      [
+        { donorEnvelopeId: "d1", amountCents: 3000 },
+        { donorEnvelopeId: "d2", amountCents: 2000 },
+      ],
+      5000,
+      new Map([["d1", 10000], ["d2", 5000]]),
+    );
+    expect(result).toEqual({ valid: true });
+  });
+
+  it("returns error when total allocated is less than overage", () => {
+    const result = validateAllocations(
+      [{ donorEnvelopeId: "d1", amountCents: 2000 }],
+      5000,
+      new Map([["d1", 10000]]),
+    );
+    expect(result).toEqual({
+      valid: false,
+      errors: ["Total allocated (2000) does not equal overage (5000)"],
+    });
+  });
+
+  it("returns error when total allocated exceeds overage", () => {
+    const result = validateAllocations(
+      [{ donorEnvelopeId: "d1", amountCents: 6000 }],
+      5000,
+      new Map([["d1", 10000]]),
+    );
+    expect(result).toEqual({
+      valid: false,
+      errors: ["Total allocated (6000) does not equal overage (5000)"],
+    });
+  });
+
+  it("returns error when allocation exceeds donor remaining balance", () => {
+    const result = validateAllocations(
+      [{ donorEnvelopeId: "d1", amountCents: 5000 }],
+      5000,
+      new Map([["d1", 3000]]),
+    );
+    expect(result).toEqual({
+      valid: false,
+      errors: ["Allocation for d1 (5000) exceeds remaining balance (3000)"],
+    });
+  });
+
+  it("returns error when donor envelope is not found", () => {
+    const result = validateAllocations(
+      [{ donorEnvelopeId: "unknown", amountCents: 1000 }],
+      1000,
+      new Map(),
+    );
+    expect(result).toEqual({
+      valid: false,
+      errors: ["Donor envelope unknown not found"],
+    });
+  });
+
+  it("returns error for empty allocations array", () => {
+    const result = validateAllocations([], 1000, new Map());
+    expect(result).toEqual({
+      valid: false,
+      errors: ["No allocations provided"],
+    });
+  });
+
+  it("returns multiple errors when multiple constraints are violated", () => {
+    const result = validateAllocations(
+      [
+        { donorEnvelopeId: "d1", amountCents: 4000 },
+        { donorEnvelopeId: "unknown", amountCents: 3000 },
+      ],
+      5000,
+      new Map([["d1", 2000]]),
+    );
+    expect(result.valid).toBe(false);
+    if (!result.valid) {
+      // d1 exceeds balance, unknown not found, sum 7000 != 5000
+      expect(result.errors).toContain("Allocation for d1 (4000) exceeds remaining balance (2000)");
+      expect(result.errors).toContain("Donor envelope unknown not found");
+      expect(result.errors).toContain("Total allocated (7000) does not equal overage (5000)");
+      expect(result.errors).toHaveLength(3);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// computeEnvelopeStatus with allocations
+// ---------------------------------------------------------------------------
+
+describe("computeEnvelopeStatus with allocations", () => {
+  it("is backward compatible with no allocations (defaults to 0)", () => {
+    const today = new Date(2026, 1, 8); // Sunday
+    const result = computeEnvelopeStatus(10000, 3000, today);
+    expect(result.remainingCents).toBe(7000);
+  });
+
+  it("adds received allocations to remaining balance", () => {
+    // budget 10000 - spent 12000 + received 5000 = 3000
+    const today = new Date(2026, 1, 8); // Sunday
+    const result = computeEnvelopeStatus(10000, 12000, today, 5000, 0);
+    expect(result.remainingCents).toBe(3000);
+  });
+
+  it("subtracts donated allocations from remaining balance", () => {
+    // budget 10000 - spent 3000 - donated 4000 = 3000
+    const today = new Date(2026, 1, 8); // Sunday
+    const result = computeEnvelopeStatus(10000, 3000, today, 0, 4000);
+    expect(result.remainingCents).toBe(3000);
+  });
+
+  it("handles both received and donated allocations", () => {
+    // budget 10000 - spent 5000 + received 2000 - donated 3000 = 4000
+    const today = new Date(2026, 1, 8); // Sunday
+    const result = computeEnvelopeStatus(10000, 5000, today, 2000, 3000);
+    expect(result.remainingCents).toBe(4000);
   });
 });
