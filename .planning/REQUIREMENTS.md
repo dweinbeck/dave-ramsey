@@ -12,7 +12,7 @@
 - [x] **INFRA-03**: Week math utilities: `getWeekRange(date)`, `getRemainingDaysPercent(today)`, `getStatusLabel(remaining, budget, remainingDaysPercent)` — single source of truth, week starts Sunday
 - [x] **INFRA-04**: Per-user data isolation enforced server-side on every read/write (userId derived from session, never accepted from client)
 - [x] **INFRA-05**: All monetary values stored as integer cents to avoid floating-point errors
-- [ ] **INFRA-06**: Reusable Modal component for overage workflow (none exists in host repo)
+- [x] **INFRA-06**: Reusable Modal component for overage workflow (none exists in host repo)
 - [x] **INFRA-07**: No logging of merchant/description payloads; no third-party analytics scripts on these pages
 
 ### Envelopes
@@ -43,11 +43,11 @@
 
 ### Overage
 
-- [ ] **OVR-01**: When a transaction causes an envelope's remaining balance to go negative, overage modal opens automatically
-- [ ] **OVR-02**: Modal lists other envelopes with their remaining budgets; user allocates amounts from donor envelopes
-- [ ] **OVR-03**: Validation enforced: each donor allocation <= donor remaining, total allocations must equal overage exactly
-- [ ] **OVR-04**: Overage allocations persisted as records linked to the source transaction for cascading cleanup
-- [ ] **OVR-05**: Server validates all overage constraints; client shows inline errors until allocation is valid
+- [x] **OVR-01**: When a transaction causes an envelope's remaining balance to go negative, overage modal opens automatically
+- [x] **OVR-02**: Modal lists other envelopes with their remaining budgets; user allocates amounts from donor envelopes
+- [x] **OVR-03**: Validation enforced: each donor allocation <= donor remaining, total allocations must equal overage exactly
+- [x] **OVR-04**: Overage allocations persisted as records linked to the source transaction for cascading cleanup
+- [x] **OVR-05**: Server validates all overage constraints; client shows inline errors until allocation is valid
 
 ### Analytics
 
@@ -98,7 +98,7 @@
 | INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
-| INFRA-06 | Phase 4 | Pending |
+| INFRA-06 | Phase 4 | Complete |
 | INFRA-07 | Phase 1 | Complete |
 | ENV-01 | Phase 2 | Complete |
 | ENV-02 | Phase 2 | Complete |
@@ -110,18 +110,18 @@
 | HOME-02 | Phase 2 | Complete |
 | HOME-03 | Phase 2 | Complete |
 | HOME-04 | Phase 2 | Complete |
-| HOME-05 | Phase 3 | Pending |
-| TXN-01 | Phase 3 | Pending |
-| TXN-02 | Phase 3 | Pending |
-| TXN-03 | Phase 3 | Pending |
-| TXN-04 | Phase 3 | Pending |
-| TXN-05 | Phase 3 | Pending |
-| TXN-06 | Phase 3 | Pending |
-| OVR-01 | Phase 4 | Pending |
-| OVR-02 | Phase 4 | Pending |
-| OVR-03 | Phase 4 | Pending |
-| OVR-04 | Phase 4 | Pending |
-| OVR-05 | Phase 4 | Pending |
+| HOME-05 | Phase 3 | Complete |
+| TXN-01 | Phase 3 | Complete |
+| TXN-02 | Phase 3 | Complete |
+| TXN-03 | Phase 3 | Complete |
+| TXN-04 | Phase 3 | Complete |
+| TXN-05 | Phase 3 | Complete |
+| TXN-06 | Phase 3 | Complete |
+| OVR-01 | Phase 4 | Complete |
+| OVR-02 | Phase 4 | Complete |
+| OVR-03 | Phase 4 | Complete |
+| OVR-04 | Phase 4 | Complete |
+| OVR-05 | Phase 4 | Complete |
 | ANL-01 | Phase 5 | Pending |
 | ANL-02 | Phase 5 | Pending |
 | ANL-03 | Phase 5 | Pending |
@@ -136,4 +136,4 @@
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after Phase 2 completion*
+*Last updated: 2026-02-10 after Phase 4 completion*
