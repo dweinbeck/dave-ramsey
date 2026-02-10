@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 4 complete -- ready for Phase 5 (Analytics)
+**Current focus:** Phase 5 in progress -- Analytics computation helpers complete, API endpoint and UI next
 
 ## Current Position
 
-Phase: 4 of 6 (Overage Reallocation)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-10 -- Completed 04-03-PLAN.md (Overage Modal & Detection)
+Phase: 5 of 6 (Analytics)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 05-01-PLAN.md (Analytics Computation Helpers)
 
-Progress: [████████████░░░░░] 75%
+Progress: [█████████████░░░░] 72%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 13
 - Average duration: 4 min
-- Total execution time: 52 min
+- Total execution time: 54 min
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [████████████░░░░░] 75%
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
 | 3. Transactions | 3/3 | 11 min | 4 min |
 | 4. Overage Reallocation | 3/3 | 11 min | 4 min |
+| 5. Analytics | 1/3 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (4 min), 04-02 (5 min), 04-01 (2 min), 03-03 (5 min), 03-02 (4 min)
-- Trend: Consistent 2-5 min per plan; Phase 4 completed in 11 min total
+- Last 5 plans: 05-01 (2 min), 04-03 (4 min), 04-02 (5 min), 04-01 (2 min), 03-03 (5 min)
+- Trend: Consistent 2-5 min per plan; 05-01 TDD plan completed in 2 min
 
 *Updated after each plan completion*
 
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - [04-03]: useEffect resets allocations when context changes (new overage opened)
 - [04-03]: Fresh mutate() return value for overage detection (not stale SWR data variable)
 - [04-03]: envelopeFetch captures returned transaction for ID used in overage context
+- [05-01]: computeWeeklySavingsBreakdown reuses same week iteration pattern as computeCumulativeSavingsFromData (intentional duplication for different output shapes)
+- [05-01]: buildPivotRows omits empty weeks and returns newest-first; computeWeeklySavingsBreakdown returns oldest-first
+- [05-01]: Week label format "Wk N" using getWeekNumber for consistent analytics display
 
 ### Pending Todos
 
@@ -96,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T21:01:00Z
-Stopped at: Completed 04-03-PLAN.md (Overage Modal & Detection) -- Phase 4 complete
+Last session: 2026-02-10T22:34:51Z
+Stopped at: Completed 05-01-PLAN.md (Analytics Computation Helpers)
 Resume file: None
