@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Routing shell, sub-navigation, placeholder pages, main nav link
+- [x] 01-01-PLAN.md — Routing shell, sub-navigation, placeholder pages, main nav link
 - [x] 01-02-PLAN.md — Week math utilities (TDD: getWeekRange, getRemainingDaysPercent, getStatusLabel, formatWeekLabel)
 - [ ] 01-03-PLAN.md — Zod types, Firestore collection helpers, formatCents utility
 
@@ -125,7 +125,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/3 | In progress | - |
+| 1. Foundation | 2/3 | In progress | - |
 | 2. Envelope Management | 0/3 | Not started | - |
 | 3. Transactions | 0/3 | Not started | - |
 | 4. Overage Reallocation | 0/3 | Not started | - |
