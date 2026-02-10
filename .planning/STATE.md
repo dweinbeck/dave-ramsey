@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 6 (Billing Integration) in progress. Plan 01 complete.
+**Current focus:** Phase 6 (Billing Integration) in progress. Plans 01-02 complete.
 
 ## Current Position
 
 Phase: 6 of 6 (Billing Integration)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-10 -- Completed 06-01-PLAN.md (billing module)
+Last activity: 2026-02-10 -- Completed 06-02-PLAN.md (API route billing gates)
 
-Progress: [████████████████░] 89%
+Progress: [█████████████████░] 94%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 4 min
-- Total execution time: 65 min
+- Total execution time: 67 min
 
 **By Phase:**
 
@@ -32,11 +32,11 @@ Progress: [████████████████░] 89%
 | 3. Transactions | 3/3 | 11 min | 4 min |
 | 4. Overage Reallocation | 3/3 | 11 min | 4 min |
 | 5. Analytics | 3/3 | 9 min | 3 min |
-| 6. Billing Integration | 1/3 | 4 min | 4 min |
+| 6. Billing Integration | 2/3 | 6 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-01 (4 min), 05-03 (4 min), 05-02 (3 min), 05-01 (2 min), 04-03 (4 min)
-- Trend: Consistent 2-5 min per plan
+- Last 5 plans: 06-02 (2 min), 06-01 (4 min), 05-03 (4 min), 05-02 (3 min), 05-01 (2 min)
+- Trend: Consistent 2-4 min per plan
 
 *Updated after each plan completion*
 
@@ -98,6 +98,10 @@ Recent decisions affecting current work:
 - [06-01]: EnvelopeBilling doc created in Firestore transaction to prevent race conditions on first access
 - [06-01]: 402 statusCode check on debitForToolUse error for readonly degradation
 - [06-01]: dave_ramsey tool pricing set to 100 credits (costToUsCentsEstimate: 0, no external API cost)
+- [06-02]: Billing check placed inside try block as first statement -- before params destructuring or body parsing
+- [06-02]: GET endpoints run billing check in parallel with data fetch via Promise.all (zero added latency)
+- [06-02]: Firestore helpers return Omit<*PageData, "billing"> -- billing is API-route concern, not data-layer
+- [06-02]: "reason" in access discriminated union check handles readwrite vs readonly reason fields
 
 ### Pending Todos
 
@@ -110,5 +114,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 06-01-PLAN.md (billing module)
+Stopped at: Completed 06-02-PLAN.md (API route billing gates)
 Resume file: None
