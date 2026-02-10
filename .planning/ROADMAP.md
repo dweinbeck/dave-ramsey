@@ -52,7 +52,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Envelope CRUD functions + savings computation (TDD, dave-ramsey repo)
-- [ ] 02-02-PLAN.md — API routes, client-side Firestore helpers, SWR hooks (personal-brand repo)
+- [x] 02-02-PLAN.md — API routes, client-side Firestore helpers, SWR hooks (personal-brand repo)
 - [ ] 02-03-PLAN.md — Home page UI: greeting, envelope cards, create/edit/delete, reorder, savings (personal-brand repo)
 
 ### Phase 3: Transactions
@@ -126,7 +126,7 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-02-10 |
-| 2. Envelope Management | 1/3 | In progress | - |
+| 2. Envelope Management | 2/3 | In progress | - |
 | 3. Transactions | 0/3 | Not started | - |
 | 4. Overage Reallocation | 0/3 | Not started | - |
 | 5. Analytics | 0/2 | Not started | - |
