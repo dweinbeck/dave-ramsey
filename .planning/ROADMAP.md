@@ -97,11 +97,12 @@ Plans:
   1. Analytics page displays current-week summary stats: total spent, total budget, total remaining, and an on-track indicator
   2. Weekly pivot table shows rows for each week, columns for each envelope, with cell values being the sum of transactions per envelope per week
   3. Savings tracker displays the cumulative savings total with a week-over-week growth visualization
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Analytics computation helpers + types (TDD, dave-ramsey repo)
+- [ ] 05-02-PLAN.md — Analytics API route, getAnalyticsData, useAnalytics hook, install Recharts (personal-brand repo)
+- [ ] 05-03-PLAN.md — Analytics page UI: SummaryStats, WeeklyPivotTable, SavingsChart, AnalyticsPage (personal-brand repo)
 
 ### Phase 6: Billing Integration
 **Goal**: The app monetizes through the existing credits system with a free trial week, weekly charging on first access, and graceful read-only degradation for unpaid weeks
@@ -129,5 +130,5 @@ Note: Phase 5 (Analytics) and Phase 6 (Billing) both depend on earlier phases bu
 | 2. Envelope Management | 3/3 | Complete | 2026-02-10 |
 | 3. Transactions | 3/3 | Complete | 2026-02-10 |
 | 4. Overage Reallocation | 3/3 | Complete | 2026-02-10 |
-| 5. Analytics | 0/2 | Not started | - |
+| 5. Analytics | 0/3 | Not started | - |
 | 6. Billing Integration | 0/2 | Not started | - |
