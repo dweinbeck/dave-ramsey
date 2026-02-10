@@ -81,6 +81,14 @@ export function transactionsForUserInWeek(
 // Pure computation helpers (testable without Firestore)
 // ---------------------------------------------------------------------------
 
+/** Minimal envelope shape needed by savings computation helpers. */
+type SavingsEnvelope = {
+  id: string;
+  weeklyBudgetCents: number;
+  rollover: boolean;
+  createdAt: string;
+};
+
 /**
  * Computes remaining cents and status label for a single envelope.
  */
@@ -105,12 +113,7 @@ export function computeEnvelopeStatus(
  * Envelopes created after the week end are excluded.
  */
 export function computeSavingsForWeek(
-  envelopes: {
-    id: string;
-    weeklyBudgetCents: number;
-    rollover: boolean;
-    createdAt: string;
-  }[],
+  envelopes: SavingsEnvelope[],
   transactions: { envelopeId: string; amountCents: number }[],
   weekStart: string,
   weekEnd: string,
@@ -145,12 +148,7 @@ export function computeSavingsForWeek(
  * @param currentWeekStart - YYYY-MM-DD of the Sunday starting the current week
  */
 export function computeCumulativeSavingsFromData(
-  envelopes: {
-    id: string;
-    weeklyBudgetCents: number;
-    rollover: boolean;
-    createdAt: string;
-  }[],
+  envelopes: SavingsEnvelope[],
   transactions: { envelopeId: string; amountCents: number; date: string }[],
   earliestWeekStart: string,
   currentWeekStart: string,
@@ -294,20 +292,7 @@ export async function deleteEnvelope(
     }
   }
 
-  // Deduplicate allocation doc IDs
-  const allocDocIds = new Set<string>();
-  for (const doc of allocByDonor.docs) allocDocIds.add(doc.ref.path);
-  for (const doc of allocByTx) allocDocIds.add(doc.ref.path);
-
-  // Collect all refs to delete
-  const allRefs: FirebaseFirestore.DocumentReference[] = [docRef];
-  for (const doc of txSnap.docs) allRefs.push(doc.ref);
-  for (const doc of allocByDonor.docs) {
-    if (!allocDocIds.has("_seen_" + doc.ref.path)) {
-      allRefs.push(doc.ref);
-    }
-  }
-  // Re-collect unique allocation refs properly
+  // Deduplicate allocation refs from both queries
   const seenPaths = new Set<string>();
   const uniqueAllocRefs: FirebaseFirestore.DocumentReference[] = [];
   for (const doc of [...allocByDonor.docs, ...allocByTx]) {
@@ -420,12 +405,7 @@ export async function computeCumulativeSavings(
 
   // Find earliest createdAt across all envelopes
   let earliestDate: Date | null = null;
-  const envelopeData: {
-    id: string;
-    weeklyBudgetCents: number;
-    rollover: boolean;
-    createdAt: string;
-  }[] = [];
+  const envelopeData: SavingsEnvelope[] = [];
 
   for (const doc of envSnap.docs) {
     const data = doc.data();
