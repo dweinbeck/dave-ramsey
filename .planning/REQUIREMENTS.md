@@ -93,47 +93,47 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | — | Pending |
-| INFRA-02 | — | Pending |
-| INFRA-03 | — | Pending |
-| INFRA-04 | — | Pending |
-| INFRA-05 | — | Pending |
-| INFRA-06 | — | Pending |
-| INFRA-07 | — | Pending |
-| ENV-01 | — | Pending |
-| ENV-02 | — | Pending |
-| ENV-03 | — | Pending |
-| ENV-04 | — | Pending |
-| ENV-05 | — | Pending |
-| ENV-06 | — | Pending |
-| HOME-01 | — | Pending |
-| HOME-02 | — | Pending |
-| HOME-03 | — | Pending |
-| HOME-04 | — | Pending |
-| HOME-05 | — | Pending |
-| TXN-01 | — | Pending |
-| TXN-02 | — | Pending |
-| TXN-03 | — | Pending |
-| TXN-04 | — | Pending |
-| TXN-05 | — | Pending |
-| TXN-06 | — | Pending |
-| OVR-01 | — | Pending |
-| OVR-02 | — | Pending |
-| OVR-03 | — | Pending |
-| OVR-04 | — | Pending |
-| OVR-05 | — | Pending |
-| ANL-01 | — | Pending |
-| ANL-02 | — | Pending |
-| ANL-03 | — | Pending |
-| BILL-01 | — | Pending |
-| BILL-02 | — | Pending |
-| BILL-03 | — | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 4 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| ENV-01 | Phase 2 | Pending |
+| ENV-02 | Phase 2 | Pending |
+| ENV-03 | Phase 2 | Pending |
+| ENV-04 | Phase 2 | Pending |
+| ENV-05 | Phase 2 | Pending |
+| ENV-06 | Phase 2 | Pending |
+| HOME-01 | Phase 2 | Pending |
+| HOME-02 | Phase 2 | Pending |
+| HOME-03 | Phase 2 | Pending |
+| HOME-04 | Phase 2 | Pending |
+| HOME-05 | Phase 3 | Pending |
+| TXN-01 | Phase 3 | Pending |
+| TXN-02 | Phase 3 | Pending |
+| TXN-03 | Phase 3 | Pending |
+| TXN-04 | Phase 3 | Pending |
+| TXN-05 | Phase 3 | Pending |
+| TXN-06 | Phase 3 | Pending |
+| OVR-01 | Phase 4 | Pending |
+| OVR-02 | Phase 4 | Pending |
+| OVR-03 | Phase 4 | Pending |
+| OVR-04 | Phase 4 | Pending |
+| OVR-05 | Phase 4 | Pending |
+| ANL-01 | Phase 5 | Pending |
+| ANL-02 | Phase 5 | Pending |
+| ANL-03 | Phase 5 | Pending |
+| BILL-01 | Phase 6 | Pending |
+| BILL-02 | Phase 6 | Pending |
+| BILL-03 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 35 total
-- Mapped to phases: 0
-- Unmapped: 35
+- Mapped to phases: 35
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after initial definition*
+*Last updated: 2026-02-10 after roadmap creation*
