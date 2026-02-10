@@ -7,13 +7,13 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Routes `/envelopes`, `/envelopes/transactions`, `/envelopes/analytics` render inside site shell with matching layout
-- [ ] **INFRA-02**: Sub-navigation tabs (Home / Transactions / Analytics) with active state highlighting
-- [ ] **INFRA-03**: Week math utilities: `getWeekRange(date)`, `getRemainingDaysPercent(today)`, `getStatusLabel(remaining, budget, remainingDaysPercent)` — single source of truth, week starts Sunday
-- [ ] **INFRA-04**: Per-user data isolation enforced server-side on every read/write (userId derived from session, never accepted from client)
-- [ ] **INFRA-05**: All monetary values stored as integer cents to avoid floating-point errors
+- [x] **INFRA-01**: Routes `/envelopes`, `/envelopes/transactions`, `/envelopes/analytics` render inside site shell with matching layout
+- [x] **INFRA-02**: Sub-navigation tabs (Home / Transactions / Analytics) with active state highlighting
+- [x] **INFRA-03**: Week math utilities: `getWeekRange(date)`, `getRemainingDaysPercent(today)`, `getStatusLabel(remaining, budget, remainingDaysPercent)` — single source of truth, week starts Sunday
+- [x] **INFRA-04**: Per-user data isolation enforced server-side on every read/write (userId derived from session, never accepted from client)
+- [x] **INFRA-05**: All monetary values stored as integer cents to avoid floating-point errors
 - [ ] **INFRA-06**: Reusable Modal component for overage workflow (none exists in host repo)
-- [ ] **INFRA-07**: No logging of merchant/description payloads; no third-party analytics scripts on these pages
+- [x] **INFRA-07**: No logging of merchant/description payloads; no third-party analytics scripts on these pages
 
 ### Envelopes
 
@@ -93,13 +93,13 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 4 | Pending |
-| INFRA-07 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Complete |
 | ENV-01 | Phase 2 | Pending |
 | ENV-02 | Phase 2 | Pending |
 | ENV-03 | Phase 2 | Pending |
@@ -136,4 +136,4 @@
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after roadmap creation*
+*Last updated: 2026-02-10 after Phase 1 completion*
