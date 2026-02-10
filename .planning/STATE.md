@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 6 (Billing Integration) in progress. Plans 01-02 complete.
+**Current focus:** ALL PHASES COMPLETE. Digital Envelopes feature fully implemented across 6 phases, 18 plans.
 
 ## Current Position
 
 Phase: 6 of 6 (Billing Integration)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-10 -- Completed 06-02-PLAN.md (API route billing gates)
+Plan: 3 of 3 in current phase
+Status: COMPLETE
+Last activity: 2026-02-10 -- Completed 06-03-PLAN.md (Client-side read-only mode)
 
-Progress: [█████████████████░] 94%
+Progress: [██████████████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
+- Total plans completed: 18
 - Average duration: 4 min
-- Total execution time: 67 min
+- Total execution time: 70 min
 
 **By Phase:**
 
@@ -32,10 +32,10 @@ Progress: [█████████████████░] 94%
 | 3. Transactions | 3/3 | 11 min | 4 min |
 | 4. Overage Reallocation | 3/3 | 11 min | 4 min |
 | 5. Analytics | 3/3 | 9 min | 3 min |
-| 6. Billing Integration | 2/3 | 6 min | 3 min |
+| 6. Billing Integration | 3/3 | 9 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-02 (2 min), 06-01 (4 min), 05-03 (4 min), 05-02 (3 min), 05-01 (2 min)
+- Last 5 plans: 06-03 (3 min), 06-02 (2 min), 06-01 (4 min), 05-03 (4 min), 05-02 (3 min)
 - Trend: Consistent 2-4 min per plan
 
 *Updated after each plan completion*
@@ -45,7 +45,7 @@ Progress: [█████████████████░] 94%
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+All decisions across the project:
 
 - [Roadmap]: 6 phases derived from 35 requirements -- Foundation, Envelopes, Transactions, Overage, Analytics, Billing
 - [Roadmap]: Compute-on-read for envelope balances (no denormalized remaining field) per research recommendation
@@ -102,10 +102,14 @@ Recent decisions affecting current work:
 - [06-02]: GET endpoints run billing check in parallel with data fetch via Promise.all (zero added latency)
 - [06-02]: Firestore helpers return Omit<*PageData, "billing"> -- billing is API-route concern, not data-layer
 - [06-02]: "reason" in access discriminated union check handles readwrite vs readonly reason fields
+- [06-03]: isReadOnly derived from data?.billing?.mode === "readonly" with optional chaining for loading-state safety
+- [06-03]: Handler guards (if isReadOnly return) as defense-in-depth alongside UI hiding
+- [06-03]: ReadOnlyBanner uses amber color scheme (warning, not error) matching existing banner patterns
+- [06-03]: CreateEnvelopeCard and Add Transaction button hidden entirely when readonly (not just disabled)
 
 ### Pending Todos
 
-None yet.
+None. All 18 plans across 6 phases are complete.
 
 ### Blockers/Concerns
 
@@ -114,5 +118,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 06-02-PLAN.md (API route billing gates)
+Stopped at: PROJECT COMPLETE -- all 6 phases, 18 plans executed
 Resume file: None
