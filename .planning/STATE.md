@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 3 of 6 (Transactions)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-10 -- Completed 03-01-PLAN.md (getWeekNumber + Transaction Update Types)
+Last activity: 2026-02-10 -- Completed 03-02-PLAN.md (Transaction CRUD + API Routes + SWR Hook)
 
-Progress: [███████░░░░░░░░░░] 44%
+Progress: [████████░░░░░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 5 min
-- Total execution time: 32 min
+- Total execution time: 36 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [███████░░░░░░░░░░] 44%
 |-------|-------|-------|----------|
 | 1. Foundation | 3/3 | 14 min | 5 min |
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
-| 3. Transactions | 1/3 | 2 min | 2 min |
+| 3. Transactions | 2/3 | 6 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (2 min), 02-03 (5 min), 02-02 (6 min), 02-01 (5 min), 01-03 (5 min)
-- Trend: consistent, fast TDD plan
+- Last 5 plans: 03-02 (4 min), 03-01 (2 min), 02-03 (5 min), 02-02 (6 min), 02-01 (5 min)
+- Trend: consistent, cross-repo execution efficient
 
 *Updated after each plan completion*
 
@@ -67,6 +67,7 @@ Recent decisions affecting current work:
 - [02-03]: window.alert for error display (temporary, modal coming in Phase 4)
 - [03-01]: getWeek with firstWeekContainsDate:1 -- Dec 31, 2025 is week 1 (same week as Jan 1, 2026)
 - [03-01]: transactionUpdateSchema reuses same per-field constraints as transactionSchema but all optional for PATCH
+- [03-02]: useTransactions SWR key includes both weekStart and weekEnd for correct cache invalidation on week navigation
 
 ### Pending Todos
 
@@ -79,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T19:35:50Z
-Stopped at: Completed 03-01-PLAN.md (getWeekNumber + Transaction Update Types)
+Last session: 2026-02-10T19:42:40Z
+Stopped at: Completed 03-02-PLAN.md (Transaction CRUD + API Routes + SWR Hook)
 Resume file: None
