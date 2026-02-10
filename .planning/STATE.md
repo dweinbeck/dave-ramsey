@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 4 of 6 (Overage Reallocation)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-10 -- Completed 04-01-PLAN.md (Allocation Validation & Balance Extension)
+Last activity: 2026-02-10 -- Completed 04-02-PLAN.md (Allocation CRUD, API & Modal)
 
-Progress: [██████████░░░░░░░] 63%
+Progress: [███████████░░░░░░] 69%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 4 min
-- Total execution time: 43 min
+- Total execution time: 48 min
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [██████████░░░░░░░] 63%
 | 1. Foundation | 3/3 | 14 min | 5 min |
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
 | 3. Transactions | 3/3 | 11 min | 4 min |
-| 4. Overage Reallocation | 1/3 | 2 min | 2 min |
+| 4. Overage Reallocation | 2/3 | 7 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (2 min), 03-03 (5 min), 03-02 (4 min), 03-01 (2 min), 02-03 (5 min)
-- Trend: TDD utility plans execute fastest
+- Last 5 plans: 04-02 (5 min), 04-01 (2 min), 03-03 (5 min), 03-02 (4 min), 03-01 (2 min)
+- Trend: Cross-repo plans take slightly longer due to merge/sync
 
 *Updated after each plan completion*
 
@@ -76,6 +76,10 @@ Recent decisions affecting current work:
 - [04-01]: validateAllocations reports all errors at once (better UX than short-circuiting)
 - [04-01]: computeEnvelopeStatus extended with optional allocation params (default 0 for backward compat)
 - [04-01]: Defense-in-depth empty check in validateAllocations independent of Zod schema enforcement
+- [04-02]: Cascade delete uses batch only when allocations exist (avoids unnecessary overhead)
+- [04-02]: Two-pass allocation query in listEnvelopesWithRemaining with deduplication
+- [04-02]: Allocation API computes live donor balances including existing allocations before validation
+- [04-02]: Modal uses native HTML dialog element for built-in focus trap and Escape handling
 
 ### Pending Todos
 
@@ -88,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T20:34:00Z
-Stopped at: Completed 04-01-PLAN.md (Allocation Validation & Balance Extension)
+Last session: 2026-02-10T20:42:00Z
+Stopped at: Completed 04-02-PLAN.md (Allocation CRUD, API & Modal)
 Resume file: None
