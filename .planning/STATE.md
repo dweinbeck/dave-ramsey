@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 5 in progress -- Analytics computation helpers complete, API endpoint and UI next
+**Current focus:** Phase 5 in progress -- Analytics API and hooks complete, UI components next
 
 ## Current Position
 
 Phase: 5 of 6 (Analytics)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-10 -- Completed 05-01-PLAN.md (Analytics Computation Helpers)
+Last activity: 2026-02-10 -- Completed 05-02-PLAN.md (Analytics API and Hooks)
 
-Progress: [█████████████░░░░] 72%
+Progress: [██████████████░░░] 78%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
+- Total plans completed: 14
 - Average duration: 4 min
-- Total execution time: 54 min
+- Total execution time: 57 min
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [█████████████░░░░] 72%
 | 2. Envelope Management | 3/3 | 16 min | 5 min |
 | 3. Transactions | 3/3 | 11 min | 4 min |
 | 4. Overage Reallocation | 3/3 | 11 min | 4 min |
-| 5. Analytics | 1/3 | 2 min | 2 min |
+| 5. Analytics | 2/3 | 5 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (2 min), 04-03 (4 min), 04-02 (5 min), 04-01 (2 min), 03-03 (5 min)
-- Trend: Consistent 2-5 min per plan; 05-01 TDD plan completed in 2 min
+- Last 5 plans: 05-02 (3 min), 05-01 (2 min), 04-03 (4 min), 04-02 (5 min), 04-01 (2 min)
+- Trend: Consistent 2-5 min per plan; Phase 5 averaging 3 min
 
 *Updated after each plan completion*
 
@@ -88,6 +88,9 @@ Recent decisions affecting current work:
 - [05-01]: computeWeeklySavingsBreakdown reuses same week iteration pattern as computeCumulativeSavingsFromData (intentional duplication for different output shapes)
 - [05-01]: buildPivotRows omits empty weeks and returns newest-first; computeWeeklySavingsBreakdown returns oldest-first
 - [05-01]: Week label format "Wk N" using getWeekNumber for consistent analytics display
+- [05-02]: getAnalyticsData uses 3 parallel Firestore queries (envelopes, current-week txns, all txns) for efficiency
+- [05-02]: Analytics summary on-track count uses raw spending without overage allocations (simplification)
+- [05-02]: useAnalytics hook is read-only (no mutate exposed) since analytics is display-only
 
 ### Pending Todos
 
@@ -100,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T22:34:51Z
-Stopped at: Completed 05-01-PLAN.md (Analytics Computation Helpers)
+Last session: 2026-02-10T22:41:33Z
+Stopped at: Completed 05-02-PLAN.md (Analytics API and Hooks)
 Resume file: None
