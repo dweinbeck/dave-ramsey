@@ -1,0 +1,31 @@
+{
+  "name": "dave-ramsey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dweinbeck/dave-ramsey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dweinbeck/dave-ramsey/issues"
+  },
+  "homepage": "https://github.com/dweinbeck/dave-ramsey#readme",
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.2",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
