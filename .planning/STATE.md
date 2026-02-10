@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 1 - Foundation
+**Current focus:** Phase 2 - Envelope Management
 
 ## Current Position
 
-Phase: 1 of 6 (Foundation)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-10 -- Completed 01-03-PLAN.md (Zod Types, Firestore Helpers, formatCents)
+Phase: 2 of 6 (Envelope Management)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 02-01-PLAN.md (Envelope CRUD Operations and Savings Computation)
 
-Progress: [██░░░░░░░░░░░░░░░] 19%
+Progress: [███░░░░░░░░░░░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: 5 min
-- Total execution time: 14 min
+- Total execution time: 19 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation | 3/3 | 14 min | 5 min |
+| 2. Envelope Management | 1/3 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (5 min), 01-02 (4 min), 01-01 (5 min)
+- Last 5 plans: 02-01 (5 min), 01-03 (5 min), 01-02 (4 min), 01-01 (5 min)
 - Trend: consistent
 
 *Updated after each plan completion*
@@ -53,6 +54,10 @@ Recent decisions affecting current work:
 - [01-03]: Timestamp imported from firebase-admin/firestore (not @google-cloud/firestore namespace)
 - [01-03]: Separate collection references (for writes) from query helpers (for reads) in firestore.ts
 - [01-03]: Created firebase.ts stub -- will be replaced with host repo's actual firebase initialization
+- [02-01]: Pure computation helpers extracted from Firestore-dependent functions for unit testability without mocks
+- [02-01]: Envelope createdAt comparison uses weekEnd (not weekStart) -- envelopes created mid-week count toward that week's savings
+- [02-01]: Per-envelope savings floored at 0 -- overspending one envelope does not subtract from total savings
+- [02-01]: SavingsEnvelope type alias to reduce repetition across computation helper signatures
 
 ### Pending Todos
 
@@ -65,6 +70,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-10T14:08:29Z
-Stopped at: Completed 01-03-PLAN.md (Zod Types, Firestore Helpers, formatCents) -- Phase 1 complete
+Last session: 2026-02-10T14:51:45Z
+Stopped at: Completed 02-01-PLAN.md (Envelope CRUD Operations and Savings Computation)
 Resume file: None
