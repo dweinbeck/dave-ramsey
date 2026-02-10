@@ -48,12 +48,12 @@ Plans:
   3. User can reorder envelopes and set per-envelope rollover policy (carry surplus vs reset), and these settings persist across sessions
   4. Home page displays a greeting banner ("Hi {name}! Today is {weekday}...") with an overall on-track indicator aggregated across all envelopes
   5. Cumulative savings total (unspent budget accumulated across weeks) is displayed prominently on the home page
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — Envelope CRUD functions + savings computation (TDD, dave-ramsey repo)
+- [ ] 02-02-PLAN.md — API routes, client-side Firestore helpers, SWR hooks (personal-brand repo)
+- [ ] 02-03-PLAN.md — Home page UI: greeting, envelope cards, create/edit/delete, reorder, savings (personal-brand repo)
 
 ### Phase 3: Transactions
 **Goal**: Users can record, edit, and delete transactions from both the home page inline form and the dedicated transactions page, with week-based filtering and immediate balance updates
