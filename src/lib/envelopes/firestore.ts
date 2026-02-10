@@ -775,6 +775,7 @@ export async function listEnvelopesWithRemaining(
     envelopes,
     weekLabel: formatWeekLabel(today),
     cumulativeSavingsCents,
+    billing: { mode: "readwrite" as const },
   };
 }
 

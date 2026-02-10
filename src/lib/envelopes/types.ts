@@ -110,11 +110,13 @@ export type HomePageData = {
   envelopes: EnvelopeWithStatus[];
   weekLabel: string;
   cumulativeSavingsCents: number;
+  billing: BillingStatus;
 };
 
 /** Response shape for GET /api/envelopes/transactions?weekStart=...&weekEnd=... */
 export type TransactionsPageData = {
   transactions: EnvelopeTransaction[];
+  billing: BillingStatus;
 };
 
 // ---------------------------------------------------------------------------
@@ -149,4 +151,36 @@ export type AnalyticsPageData = {
   envelopes: { id: string; title: string }[]; // column headers for pivot table
   pivotRows: PivotRow[]; // rows, newest week first
   savingsByWeek: WeeklySavingsEntry[]; // oldest first (for chart x-axis)
+  billing: BillingStatus;
+};
+
+// ---------------------------------------------------------------------------
+// Billing types (Phase 6)
+// ---------------------------------------------------------------------------
+
+/** Tracks per-user envelope billing state in Firestore: envelope_billing/{uid}. */
+export type EnvelopeBilling = {
+  uid: string;
+  firstAccessWeekStart: string; // YYYY-MM-DD (Sunday of first-ever access)
+  paidWeeks: Record<
+    string,
+    {
+      usageId: string;
+      creditsCharged: number;
+      chargedAt: Timestamp;
+    }
+  >;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+};
+
+/** Result of billing access check for envelope routes. */
+export type EnvelopeAccessResult =
+  | { mode: "readwrite"; weekStart: string; reason?: "free_week" }
+  | { mode: "readonly"; weekStart: string; reason: "unpaid" };
+
+/** Billing status included in envelope API GET responses. */
+export type BillingStatus = {
+  mode: "readwrite" | "readonly";
+  reason?: "free_week" | "unpaid";
 };
