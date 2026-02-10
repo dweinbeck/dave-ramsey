@@ -9,8 +9,11 @@ import {
 } from "./week-math";
 import type {
   Envelope,
+  EnvelopeTransaction,
   EnvelopeWithStatus,
   HomePageData,
+  TransactionInput,
+  TransactionUpdateInput,
 } from "./types";
 
 const WEEK_OPTIONS = { weekStartsOn: 0 as const };
@@ -335,6 +338,116 @@ export async function reorderEnvelopes(
   }
 
   await batch.commit();
+}
+
+// ---------------------------------------------------------------------------
+// Transaction CRUD operations
+// ---------------------------------------------------------------------------
+
+/**
+ * Creates a new transaction for the given user.
+ * Verifies the target envelope exists and belongs to the user.
+ */
+export async function createTransaction(
+  userId: string,
+  input: TransactionInput,
+): Promise<EnvelopeTransaction> {
+  // Verify the envelope exists and belongs to the user
+  const envRef = envelopesCol().doc(input.envelopeId);
+  const envSnap = await envRef.get();
+  if (!envSnap.exists || envSnap.data()?.userId !== userId) {
+    throw new Error("Envelope not found or access denied.");
+  }
+
+  const docRef = transactionsCol().doc();
+  const data = {
+    userId,
+    envelopeId: input.envelopeId,
+    amountCents: input.amountCents,
+    date: input.date,
+    ...(input.merchant ? { merchant: input.merchant } : {}),
+    ...(input.description ? { description: input.description } : {}),
+    createdAt: FieldValue.serverTimestamp(),
+    updatedAt: FieldValue.serverTimestamp(),
+  };
+
+  await docRef.set(data);
+  const snap = await docRef.get();
+  return { id: docRef.id, ...snap.data() } as EnvelopeTransaction;
+}
+
+/**
+ * Updates an existing transaction. Verifies ownership before modifying.
+ * If changing envelopeId, verifies the new envelope also belongs to the user.
+ */
+export async function updateTransaction(
+  userId: string,
+  transactionId: string,
+  input: TransactionUpdateInput,
+): Promise<void> {
+  const docRef = transactionsCol().doc(transactionId);
+  const snap = await docRef.get();
+  if (!snap.exists || snap.data()?.userId !== userId) {
+    throw new Error("Transaction not found or access denied.");
+  }
+
+  // If changing envelope, verify the new envelope belongs to the user
+  if (input.envelopeId) {
+    const envRef = envelopesCol().doc(input.envelopeId);
+    const envSnap = await envRef.get();
+    if (!envSnap.exists || envSnap.data()?.userId !== userId) {
+      throw new Error("Envelope not found or access denied.");
+    }
+  }
+
+  const updateData: Record<string, unknown> = {
+    updatedAt: FieldValue.serverTimestamp(),
+  };
+  if (input.envelopeId !== undefined) updateData.envelopeId = input.envelopeId;
+  if (input.amountCents !== undefined) updateData.amountCents = input.amountCents;
+  if (input.date !== undefined) updateData.date = input.date;
+  if (input.merchant !== undefined) updateData.merchant = input.merchant;
+  if (input.description !== undefined)
+    updateData.description = input.description;
+
+  await docRef.update(updateData);
+}
+
+/**
+ * Deletes a transaction. Verifies ownership before deleting.
+ */
+export async function deleteTransaction(
+  userId: string,
+  transactionId: string,
+): Promise<void> {
+  const docRef = transactionsCol().doc(transactionId);
+  const snap = await docRef.get();
+  if (!snap.exists || snap.data()?.userId !== userId) {
+    throw new Error("Transaction not found or access denied.");
+  }
+
+  // TODO: Phase 4 will add cascade-delete of related overage allocations here.
+  await docRef.delete();
+}
+
+/**
+ * Lists transactions for a user within a given week range, ordered by date descending.
+ */
+export async function listTransactionsForWeek(
+  userId: string,
+  weekStart: string,
+  weekEnd: string,
+): Promise<{ transactions: EnvelopeTransaction[] }> {
+  const snap = await transactionsForUserInWeek(userId, weekStart, weekEnd)
+    .orderBy("date", "desc")
+    .get();
+
+  const transactions = snap.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as EnvelopeTransaction[];
+
+  return { transactions };
 }
 
 /**
