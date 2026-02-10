@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Users can see exactly how much they have left in each spending category this week and reallocate when they overspend
-**Current focus:** Phase 5 verified complete. Phase 6 (Billing Integration) is next.
+**Current focus:** Phase 6 (Billing Integration) in progress. Plan 01 complete.
 
 ## Current Position
 
-Phase: 5 of 6 (Analytics) -- VERIFIED COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase verified -- all 3 success criteria confirmed
-Last activity: 2026-02-10 -- Phase 5 verified (3/3 criteria, ANL-01/02/03 complete)
+Phase: 6 of 6 (Billing Integration)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-10 -- Completed 06-01-PLAN.md (billing module)
 
-Progress: [███████████████░░] 83%
+Progress: [████████████████░] 89%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15
+- Total plans completed: 16
 - Average duration: 4 min
-- Total execution time: 61 min
+- Total execution time: 65 min
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: [███████████████░░] 83%
 | 3. Transactions | 3/3 | 11 min | 4 min |
 | 4. Overage Reallocation | 3/3 | 11 min | 4 min |
 | 5. Analytics | 3/3 | 9 min | 3 min |
+| 6. Billing Integration | 1/3 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-03 (4 min), 05-02 (3 min), 05-01 (2 min), 04-03 (4 min), 04-02 (5 min)
-- Trend: Consistent 2-5 min per plan; Phase 5 completed at 3 min average
+- Last 5 plans: 06-01 (4 min), 05-03 (4 min), 05-02 (3 min), 05-01 (2 min), 04-03 (4 min)
+- Trend: Consistent 2-5 min per plan
 
 *Updated after each plan completion*
 
@@ -93,6 +94,10 @@ Recent decisions affecting current work:
 - [05-02]: useAnalytics hook is read-only (no mutate exposed) since analytics is display-only
 - [05-03]: Literal hex values for Recharts SVG instead of CSS variables (Tailwind v4 compatibility)
 - [05-03]: Number(value ?? 0) for Recharts Tooltip formatter (v3 types define value as number | undefined)
+- [06-01]: Default billing placeholder { mode: "readwrite" } in firestore return objects until API routes integrate checkEnvelopeAccess()
+- [06-01]: EnvelopeBilling doc created in Firestore transaction to prevent race conditions on first access
+- [06-01]: 402 statusCode check on debitForToolUse error for readonly degradation
+- [06-01]: dave_ramsey tool pricing set to 100 credits (costToUsCentsEstimate: 0, no external API cost)
 
 ### Pending Todos
 
@@ -100,10 +105,10 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Phase 6]: Existing `debitForToolUse()` function needs review during Phase 6 planning to understand integration points.
+None.
 
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 5 verified complete -- ready for Phase 6 (Billing Integration)
+Stopped at: Completed 06-01-PLAN.md (billing module)
 Resume file: None
