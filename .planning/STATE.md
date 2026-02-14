@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 6 of 6 (all complete)
 Plan: N/A — milestone shipped
 Status: Ready for next milestone
-Last activity: 2026-02-10 — v1 milestone archived
+Last activity: 2026-02-14 - Completed quick task 1: Rebrand envelope budgeting app to Stash
 
 Progress: [██████████████████] 100% (v1)
 
@@ -47,6 +47,12 @@ None. v1 complete.
 ### Blockers/Concerns
 
 None.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 1 | Rebrand envelope budgeting app to Stash | 2026-02-14 | 6e2ff8d | [1-rebrand-envelope-budgeting-app-to-stash](./quick/1-rebrand-envelope-budgeting-app-to-stash/) |
 
 ## Session Continuity
 
