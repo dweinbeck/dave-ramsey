@@ -2,9 +2,9 @@
 
 ## Overview
 
-Digital Envelopes is a feature module within the host `personal-brand` Next.js site. It does not deploy independently -- it ships as part of the host site's build and deploy pipeline. The module consists of server-side library code (`src/lib/envelopes/`), API Route Handlers (planned under `src/app/api/envelopes/`), page components (planned under `src/app/envelopes/`), and shared UI components (planned under `src/components/envelopes/`).
+Stash is a feature module within the host `personal-brand` Next.js site. It does not deploy independently -- it ships as part of the host site's build and deploy pipeline. The module consists of server-side library code (`src/lib/envelopes/`), API Route Handlers (planned under `src/app/api/envelopes/`), page components (planned under `src/app/envelopes/`), and shared UI components (planned under `src/components/envelopes/`).
 
-The current `dave-ramsey` repository is a standalone development workspace for building and testing the core library (types, schemas, week math, Firestore helpers, computation functions) before integrating into the host repo. It shares the same dependency versions as the host repo to ensure compatibility.
+The current `stash` repository is a standalone development workspace for building and testing the core library (types, schemas, week math, Firestore helpers, computation functions) before integrating into the host repo. It shares the same dependency versions as the host repo to ensure compatibility.
 
 ## Environment Variables
 
@@ -49,8 +49,8 @@ No additional environment variables are required for the envelope module. All co
 
 ```bash
 # Clone the repo
-git clone https://github.com/dweinbeck/dave-ramsey.git
-cd dave-ramsey
+git clone https://github.com/dweinbeck/stash.git
+cd stash
 
 # Install dependencies
 npm install
@@ -88,8 +88,8 @@ npx vitest run src/lib/envelopes/__tests__/firestore.test.ts
 When the module is ready for integration, the source files will be copied into the host `personal-brand` repo at the corresponding paths:
 
 ```
-dave-ramsey/src/lib/envelopes/   ->  personal-brand/src/lib/envelopes/
-dave-ramsey/src/lib/firebase.ts  ->  (uses existing personal-brand/src/lib/firebase.ts)
+stash/src/lib/envelopes/   ->  personal-brand/src/lib/envelopes/
+stash/src/lib/firebase.ts  ->  (uses existing personal-brand/src/lib/firebase.ts)
 ```
 
 The host repo already has all required dependencies (`firebase-admin`, `zod`, `date-fns`, `swr`, `vitest`) at compatible versions.
@@ -113,7 +113,7 @@ Host Repo Build Pipeline:
 
 ## Cloud Build and Deploy
 
-Digital Envelopes deploys as part of the host site. There is no independent deployment pipeline.
+Stash deploys as part of the host site. There is no independent deployment pipeline.
 
 ```
 Developer                    GitHub                  Cloud Build             Cloud Run
@@ -183,7 +183,7 @@ Required indexes (add to `firestore.indexes.json`):
 
 ## Rollback
 
-Since Digital Envelopes is part of the host site, rollback follows the host site's rollback procedure:
+Since Stash is part of the host site, rollback follows the host site's rollback procedure:
 
 ```bash
 # List recent Cloud Run revisions

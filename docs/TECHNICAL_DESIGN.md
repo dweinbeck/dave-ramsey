@@ -2,7 +2,7 @@
 
 ## System Architecture
 
-Digital Envelopes is a feature module within an existing Next.js 16 App Router site. The architecture follows a server-centric pattern: all data operations flow through Next.js API Route Handlers that authenticate via Firebase ID tokens, access Firestore through the admin SDK, and return computed data to the client. Client components use SWR for data fetching and cache management. There is no client-side Firestore access -- Firestore security rules deny all direct client reads and writes (`allow read, write: if false`).
+Stash is a feature module within an existing Next.js 16 App Router site. The architecture follows a server-centric pattern: all data operations flow through Next.js API Route Handlers that authenticate via Firebase ID tokens, access Firestore through the admin SDK, and return computed data to the client. Client components use SWR for data fetching and cache management. There is no client-side Firestore access -- Firestore security rules deny all direct client reads and writes (`allow read, write: if false`).
 
 Envelope balances are computed on read rather than stored as denormalized fields. This eliminates write contention on envelope documents, prevents consistency drift from partial failures, and simplifies deletion cleanup. The trade-off is slightly more Firestore reads per page load (~60 document reads for a user with 10 envelopes), which is negligible at the expected scale.
 
@@ -20,7 +20,7 @@ Envelope balances are computed on read rather than stored as denormalized fields
 ## Directory Structure
 
 ```
-dave-ramsey/
+stash/
   src/
     lib/
       firebase.ts                          # Firebase Admin SDK init (singleton)

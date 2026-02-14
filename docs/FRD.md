@@ -34,7 +34,7 @@
 
 ### S1: First-Time Setup
 
-A new user signs in with Google, navigates to Digital Envelopes, and creates their first set of envelopes. They can use a template (e.g., "Groceries," "Gas," "Dining Out," "Entertainment") or create custom envelopes. For each envelope, they set a weekly budget amount. Setup takes under 2 minutes.
+A new user signs in with Google, navigates to Stash, and creates their first set of envelopes. They can use a template (e.g., "Groceries," "Gas," "Dining Out," "Entertainment") or create custom envelopes. For each envelope, they set a weekly budget amount. Setup takes under 2 minutes.
 
 ### S2: Daily Transaction Logging
 
@@ -58,7 +58,7 @@ A new week begins (Sunday). Non-rollover envelopes reset to their full weekly bu
 
 ### S7: Billing Access
 
-The user's first week using Digital Envelopes is free. Starting the second week, the system charges 100 credits from the host site's billing system. If the user has insufficient credits, envelope pages display in read-only mode (data visible but mutations disabled).
+The user's first week using Stash is free. Starting the second week, the system charges 100 credits from the host site's billing system. If the user has insufficient credits, envelope pages display in read-only mode (data visible but mutations disabled).
 
 ## End-to-End Workflows
 
